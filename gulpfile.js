@@ -190,7 +190,6 @@ gulp.task('copy-templates', function() {
 
 //Funciona quando usando o Compass - depende do Rails + Sass + Compass instalados e configurados na máquina
 gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
-
   runSequence('hbs', //clean:dist e a task original aqui, removida porque deu problema no windows
     ['hbs', 'compass', 'js', 'useref', 'images', 'fonts', 'root-files'],
     'clean-templates',
@@ -289,6 +288,15 @@ gulp.task('scssBower', function() {
   ])
   .pipe(gulp.dest(config.srcPath+'sass/plugins/owl.carousel'));
 
+  //rename os owl carousels padrao
+  gulp.src([
+    config.srcPath+'sass/plugins/owl.carousel/owl.carousel.scss'),
+    config.srcPath+'sass/plugins/owl.carousel/owl.theme.default.scss'),
+    config.srcPath+'sass/plugins/owl.carousel/owl.theme.green.scss')
+  ])
+  .pipe(gulp.dest(config.srcPath+'sass/plugins/owl.carousel'));
+  rename({prefix: '_', extname: '.scss'})
+
   //iCheck css
   gulp.src([
     config.bowerDir+'/iCheck/skins/**/*.css'
@@ -329,7 +337,7 @@ gulp.task('scssBower', function() {
   gulp.src([
     config.bowerDir+'/prism/themes/**/*.css'
   ])
-  .pipe(gulpif(condition, rename({prefix: '_', extname: '.scss'}) ))
+  .pipe(rename({prefix: '_', extname: '.scss'}))
   .pipe(gulp.dest(config.srcPath+'sass/plugins/prism/'));
 
   //Bootstrap
