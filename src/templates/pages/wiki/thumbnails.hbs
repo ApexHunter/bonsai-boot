@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>	
+	{{> head-metatags title='Front-End Dev Conference'}}
+	{{> head-scripts }}
+</head>
+<body>
+	{{> mol-bs-jumbotron title='Documentação do novo Ecom' description='Esta documentação já está utilizando Gulp e Handlebars' }}
+	<main class="main container">		
+		<section>
+			<article>
+				<h1 class="font-titles">Thumbnails</h1>
+				<div class="row">
+					<div class="col-xs-27 col-sm-12 col-lg-8">
+						{{>mol-bs-thumbnail src='/images/mountains.png' alt='...' title='Title label' content='Lorem ipsum dolor sit amet'}}
+					</div>
+
+					<div class="col-xs-27 col-sm-12 col-lg-8">
+						{{>mol-bs-thumbnail src='/images/lake-transparent.png' alt='...' title='Title label' content='Lorem ipsum dolor sit amet'}}
+					</div>
+
+					<div class="col-xs-27 col-sm-12 col-lg-8">
+						{{>mol-bs-thumbnail src='/images/mountains-4.png' alt='...' title='Title label' content='Lorem ipsum dolor sit amet'}}
+					</div>
+				</div>
+			</article>
+		</section>
+	</main>
+	{{> footer}}
+
+	{{> footer-scripts }}
+	<!--build:js js/main.js -->
+
+	<!-- endbuild -->
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>	
+	{{> head-metatags title='Front-End Dev Conference'}}
+	{{> head-scripts }}
+</head>
+<body>
+	{{> mol-bs-jumbotron title='Documentação do novo Ecom' description='Esta documentação já está utilizando Gulp e Handlebars' }}
+	<main class="main container">
+		<section>
+			<article>
+				<h1 class="font-titles">Alerts e Progress Bars</h1>
+				<div class="row">
+					<div class="col-xs-24 col-sm-12">
+						{{> mol-bs-alert status='success' content='Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod	tempor incididunt ut labore et dolore magna aliqua. '}}
+
+						{{> mol-bs-alert status='info' content='Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '}}
+
+						{{> mol-bs-alert status='danger' content='Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod	tempor incididunt ut labore et dolore magna aliqua. '}}
+
+						{{> mol-bs-alert status='warning' content='Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod	tempor incididunt ut labore et dolore magna aliqua. '}}
+					</div>
+					<div class="col-xs-24 col-sm-12">
+						{{> mol-bs-progress-bar porcentagem='20' max='100' min='0' status='success'}}
+
+						{{> mol-bs-progress-bar porcentagem='40' max='100' min='0' status='info'}}
+
+						{{> mol-bs-progress-bar porcentagem='60' max='100' min='0' status='danger'}}
+
+						{{> mol-bs-progress-bar porcentagem='80' max='100' min='0' status='warning progress-bar-striped active'}}
+					</div>
+				</div>
+			</article>
+		</section>
+	</main>
+	{{> footer}}
+
+	{{> footer-scripts }}
+	<!--build:js js/main.js -->
+
+	<!-- endbuild -->
+</body>
+</html>

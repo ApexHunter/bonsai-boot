@@ -1,0 +1,53 @@
+{
+  "name": "boot-gulp",
+  "version": "0.0.1",
+  "description": "Boot model para projetos de frontend usando Node + Gulp + Sass + Compass",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bellentani/boot-gulp.git"
+  },
+  "keywords": [
+    "Gulp",
+    "boot",
+    "model",
+    "workflow"
+  ],
+  "author": "Poe Bellentani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bellentani/boot-gulp/issues"
+  },
+  "homepage": "https://github.com/bellentani/boot-gulp#readme",
+  "devDependencies": {
+    "assert": "^1.3.0",
+    "autoprefixer": "^6.5.2",
+    "browser-sync": "^2.17.5",
+    "connect-flash": "^0.1.1",
+    "del": "^2.2.2",
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-bower": "0.0.13",
+    "gulp-compass": "^2.1.0",
+    "gulp-compile-handlebars": "^0.6.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-filter": "^4.0.0",
+    "gulp-html-beautify": "^1.0.1",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-postcss": "^6.2.0",
+    "gulp-regex-rename": "^0.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^2.2.0",
+    "gulp-stats": "0.0.3",
+    "gulp-uglify": "^2.0.0",
+    "gulp-useref": "^3.1.2",
+    "node-dir": "^0.1.16",
+    "run-sequence": "^1.2.2"
+  }
+}

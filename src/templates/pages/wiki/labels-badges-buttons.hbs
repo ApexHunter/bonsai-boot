@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>	
+	{{> head-metatags title='Front-End Dev Conference'}}
+	{{> head-scripts }}
+</head>
+<body>
+	{{> mol-bs-jumbotron title='Documentação do novo Ecom' description='Esta documentação já está utilizando Gulp e Handlebars' }}
+	<main class="main container">
+		<section>
+
+			<article>
+				<h1 class="font-titles">Labels, Badges e Buttons</h1>
+				<div class="row">
+					<div class="col-xs-24 col-sm-8">
+						{{> mol-bs-label}}
+					</div>
+
+					<div class="col-xs-24 col-sm-8">
+						{{> mol-bs-badge}}
+					</div>
+
+					<div class="col-xs-24 col-sm-8">
+						<p>
+							Você pode criar dois tipos de botões, sendo eles no formato <code>button</code> ou formato link <code>a</code>. Para isso, basta chamar o átomo correspondente na qual <code>atom-bs-btn-button</code> cria um buttom e <code>atom-bs-link-button</code> criar um link.  
+						</p>
+						<p>Ambos os formatos de botões tem os atributos <code>btn</code> para definir a cor do botão e <code>value</code> para definir o rótulo. O botão no formato <code>button</code> leva ainda o atributo <code>type</code> para definir o tipo de botão e o formato <code>link</code> leva o atributo <code>href</code></p>
+						<div class="form-group">
+							{{> atom-bs-btn-button btn='primary' type='button' value='Botão'}}
+							{{> atom-bs-btn-button btn='success' type='submit' value='Enviar'}}
+							{{> atom-bs-btn-button btn='warning' type='reset' value='Limpar'}}
+						</div>
+
+						<div class="form-group">
+							{{> atom-bs-link-button btn='primary' href='#' value='Botão'}}
+							{{> atom-bs-link-button btn='success' href='#' value='Enviar'}}
+							{{> atom-bs-link-button btn='warning' href='#' value='Limpar'}}
+						</div>					
+					</div>
+				</div>
+			</article>			
+		</section>
+	</main>
+	{{> footer}}
+
+	{{> footer-scripts }}
+	<!--build:js js/main.js -->
+
+	<!-- endbuild -->
+</body>
+</html>

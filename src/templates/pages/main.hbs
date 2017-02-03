@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+  <head>
+    <title>Front-End Dev Conference</title>
+    {{> head-scripts }}
+  </head>
+  <body>
+    {{> header}}
+    <main class="main container">
+      <div class="row">
+        <div class="col-xs-12">
+          <ul class="list-unstyled">
+            <li>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-teste">Modal</button>
+            </li>
+            <li>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-teste-lg">Large modal</button>
+            </li>
+            <li>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-teste-sm">Small modal</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+    {{> footer}}
+
+    <!-- modals -->
+    {{> mol-bs-modal
+      modal-id="modal-teste"
+     }}
+    {{> mol-bs-modal
+      modal-id="modal-teste-lg"
+      modal-animation="fade"
+      modal-aria="modal-teste"
+      modal-backdrop="true"
+      modal-show="true"
+      modal-size="modal-lg"
+    }}
+    {{> mol-bs-modal
+      modal-id="modal-teste-sm"
+      modal-size="modal-sm"
+     }}
+
+    {{> footer-scripts }}
+    <!--build:js js/main.js -->
+
+    <!-- endbuild -->
+  </body>
+</html>

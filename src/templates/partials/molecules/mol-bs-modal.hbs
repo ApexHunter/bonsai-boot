@@ -1,0 +1,33 @@
+<div id="{{modal-id}}" class="modal {{modal-animation}}" tabindex="-1" role="dialog"
+  {{#if modal-aria}} aria-labelledby="{{modal-aria}}"{{/if}}
+  {{#if modal-show}} data-backdrop="{{modal-backdrop}}"{{/if}}
+  {{#if modal-keyboard}} data-keyboard="{{modal-keyboard}}"{{/if}}
+  {{#if modal-show}} data-show="{{modal-show}}"{{/if}}>
+  <div class="modal-dialog {{modal-size}}" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        {{#if modal-header}}
+        {{modal-header}}
+        {{else}}
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+        {{/if}}
+      </div>
+      <div class="modal-body">
+        {{#if modal-body}}
+        {{modal-body}}
+        {{else}}
+        <p>One fine body&hellip;</p>
+        {{/if}}
+      </div>
+      <div class="modal-footer">
+        {{#if modal-footer}}
+        {{modal-footer}}
+        {{else}}
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        {{/if}}
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

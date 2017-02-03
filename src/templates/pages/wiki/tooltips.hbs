@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>	
+	{{> head-metatags title='Front-End Dev Conference'}}
+	{{> head-scripts }}
+</head>
+<body>
+	{{> mol-bs-jumbotron title='Documentação do novo Ecom' description='Esta documentação já está utilizando Gulp e Handlebars' }}
+	<main class="main container">
+		<section>	
+
+			<article>
+				<h1 class="font-titles">Tooltips</h1>
+				<div class="row">
+					<div class="col-xs-24 col-sm-12">
+						{{> atom-bs-tooltips status='success' place='left' title='Para a esquerda' value='Tooltip Left'}}
+
+						{{> atom-bs-tooltips status='info' place='top' title='Para o topo' value='Tooltip Top'}}
+
+						{{> atom-bs-tooltips status='warning' place='bottom' title='Para baixo' value='Tooltip Bottom'}}
+
+						{{> atom-bs-tooltips status='danger' place='right' title='Para a direita' value='Tooltip Right'}}
+					</div>
+				</div>
+			</article>			
+
+		</section>
+	</main>
+	{{> footer}}
+
+	{{> footer-scripts }}
+	<!--build:js js/main.js -->
+
+	<!-- endbuild -->
+</body>
+</html>

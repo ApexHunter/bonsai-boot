@@ -1,0 +1,16 @@
+.main-menu{
+	.nav{
+		min-height: 48px;
+
+		li{
+			a{
+				padding: 15px;
+				color: $white;
+
+				&:hover, &:focus{
+					color: $dark-gray;
+				}
+			}
+		}
+	}
+}

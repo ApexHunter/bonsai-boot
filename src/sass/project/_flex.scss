@@ -1,0 +1,39 @@
+.row-flex, .form-flex{
+	display: flex;
+}
+
+.row-flex{	
+	flex-wrap: wrap;
+
+	.item-flex {
+		@media (min-width: $screen-sm-min) {
+			flex: 0 0 100%;			
+		}
+
+		@media (min-width: $screen-md-min) {
+			flex: 0 0 50%;
+		}
+
+		@media (min-width: $screen-lg-min) {
+			flex: 0 0 25%;
+		}
+
+		padding: 10px;
+	}
+}
+
+.form-flex{
+	width: 100%;
+
+	.btn{
+		flex: 0 0 48%;
+
+		&:first-child{
+			margin: 0 2% 0 0;
+		}
+
+		&:last-child{
+			margin: 0 0 0 2%;
+		}
+	}
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>	
+	{{> head-metatags title='Front-End Dev Conference'}}
+	{{> head-scripts }}
+</head>
+<body>
+	{{> mol-bs-jumbotron title='Documentação do novo Ecom' description='Esta documentação já está utilizando Gulp e Handlebars' }}
+	<main class="main container">
+		<section>
+			<article>
+				<h1 class="font-titles">Navs</h1>
+
+				<div class="row">
+					<div class="col-xs-24 col-sm-12 panel">						
+						{{>mol-bs-nav nav='tabs' href='#' item='First tab' status='active'}}					
+					</div>	
+				
+					<div class="col-xs-24 col-sm-12 panel">
+						{{>mol-bs-nav nav='pills' href='#' item='First tab' status='active'}}
+					</div>						
+				</div>	
+
+				<div class="row">
+					<div class="col-xs-24 col-sm-12 panel">
+						{{>mol-bs-nav nav='pills nav-stacked' href='#' item='First tab' status='active'}}
+					</div>
+
+					<div class="col-xs-24 col-sm-12 panel">
+						{{>mol-bs-nav nav='tabs nav-justified' href='#' item='First tab' status='active'}}
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-24 panel">
+						{{>mol-bs-nav nav='pills nav-justified' href='#' item='First tab' status='active'}}
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-24 panel">
+						{{>mol-bs-navbar}}
+					</div>
+				</div>
+			</article>
+		</section>
+	</main>
+	{{> footer}}
+
+	{{> footer-scripts }}
+	<!--build:js js/main.js -->
+
+	<!-- endbuild -->
+</body>
+</html>
