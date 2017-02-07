@@ -4,3 +4,5 @@ npm-debug.log
 **/_notes
 dist/
 src/components
+app/**/*.min.js
+app/**/*.map
