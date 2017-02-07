@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<head>	
+<head>
 	{{> head-metatags title='Front-End Dev Conference'}}
 	{{> head-scripts }}
 </head>
 <body>
 	{{> mol-bs-jumbotron title='Documentação do novo Ecom' description='Esta documentação já está utilizando Gulp e Handlebars' }}
-	<main class="main container">		
+	<main class="main container">
 		<section>
 			<article>
 				<h1 class="font-titles">Input groups</h1>
 				<div class="row">
-					<div class="col-xs-24 col-sm-12">						
+					<div class="col-xs-24 col-sm-12">
 						<div class="form-group">
 							{{>mol-bs-input-group-addon id='TelefoneComercial' type='text' addon='Telefone' size='lg' }}
 						</div>
@@ -30,7 +30,7 @@
 						<div class="form-group">
 							{{>mol-bs-input-group-double-addon id='number' type='number' addon='$' addon2='.00'}}
 						</div>
-						
+
 					</div>
 					<div class="col-xs-24 col-sm-12">
 						<div class="form-group">
@@ -47,13 +47,13 @@
 
 						<div class="form-group">
 							{{>mol-bs-input-group-addon-dropdown-right status='success' button='Ação' type='text'}}
-						</div>						
+						</div>
 					</div>
 				</div>
 			</article>
 		</section>
 	</main>
-	{{> footer}}
+	{{> org-footer}}
 
 	{{> footer-scripts }}
 	<!--build:js js/main.js -->

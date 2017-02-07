@@ -15,11 +15,13 @@ cssnano = require('gulp-cssnano'),
 imagemin = require('gulp-imagemin'),
 runSequence = require('run-sequence'),
 bower = require('gulp-bower'),
-regexRename = require('gulp-regex-rename');
+regexRename = require('gulp-regex-rename'),
+concat = require('gulp-concat');
 
 var config = {
   srcPath: 'src/',
   distPath: 'dist/',
+  angularPath: 'app/',
   bowerDir: 'src/components'
 };
 
@@ -113,6 +115,47 @@ gulp.task('useref', function(){
     .pipe(gulp.dest(config.distPath))
 });
 
+//Angular Tasks
+//Scripts Task
+gulp.task('scriptsApp', function () {
+  gulp.src([config.angularPath+'**/*.js', '!'+config.angularPath+'**/*.min.js'])
+    .pipe(sourcemaps.init())
+    .pipe(concat(config.angularPath+'app.min.js'))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./'))
+    .pipe(browserSync.stream());
+});
+
+//Directives task
+gulp.task('directiveApp', function () {
+  gulp.src([config.angularPath+'directives/**/*.js', '!'+config.angularPath+'directives/**/*.min.js'])
+    .pipe(concat(config.angularPath+'directives.min.js'))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('scriptsControllers', function () {
+  gulp.src([config.angularPath+'views/**/*.js', '!'+config.angularPath+'views/**/*.min.js'])
+    .pipe(sourcemaps.init())
+    .pipe(concat(config.angularPath+'controllers.min.js'))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('angular-minify', function() {
+  gulp.src([
+    config.srcPath+'**/*.js',
+    '!'+config.srcPath+'templates/**/*.*'
+  ])
+  .pipe(uglify())
+  .pipe(gulp.dest(config.distPath))
+});
+
 gulp.task('hbs', function() {
   //var path = require('path');
   //var partialsList = './'+config.srcPath+'templates/partials'+path;
@@ -178,6 +221,7 @@ gulp.task('clean:dist', function() {
   return del.sync(config.distPath);
 });
 
+//transforma os templates em includes para serem utilizados no wiki
 gulp.task('copy-templates', function() {
   //bootstrap-select
   gulp.src([
@@ -208,7 +252,8 @@ gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
   ], ['fonts']);
   gulp.watch([
     config.srcPath+'**/*.js',
-    '!'+config.srcPath+'templates/**/*.*'
+    '!'+config.srcPath+'templates/**/*.*',
+    '!'+config.angularPath+'**/*.js'
   ], ['js']);
   gulp.watch([
     config.srcPath+'**/*.{png,jpg,gif,svg}',
@@ -218,6 +263,20 @@ gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
     config.srcPath+'*.{ico,jpg,png,gif,txt,xml}',
     '!'+config.srcPath+'*.+(zip|rar|psd|ai|pdf)'
   ], ['root-files']);
+  //angular watch
+
+  gulp.watch([
+    config.angularPath+'**/*.js',
+    '!'+config.angularPath+'**/*min.js'
+  ], ['scriptsApp']);
+  gulp.watch([
+    config.angularPath+'views/**/*.js',
+    '!'+config.angularPath+'views/**/*min.js'
+  ], ['scriptsControllers']);
+  gulp.watch([
+    config.angularPath+'directives/**/*.js',
+    '!'+config.angularPath+'directives/**/*min.js'
+  ], ['directiveApp']);
 
   gulp.watch([
     config.srcPath+'fonts/**/*',
@@ -229,7 +288,7 @@ gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
 
 gulp.task('build', function (callback) {
   runSequence('clean:dist',
-    ['compass', 'js', 'hbs', 'clean-templates', 'images', 'fonts'],
+    ['compass', 'js', 'hbs', 'clean-templates', 'images', 'fonts', 'scriptsApp', 'scriptsControllers', 'directiveApp'],
     callback
   )
 });
@@ -290,9 +349,9 @@ gulp.task('scssBower', function() {
 
   //rename os owl carousels padrao
   gulp.src([
-    config.srcPath+'sass/plugins/owl.carousel/owl.carousel.scss'),
-    config.srcPath+'sass/plugins/owl.carousel/owl.theme.default.scss'),
-    config.srcPath+'sass/plugins/owl.carousel/owl.theme.green.scss')
+    config.srcPath+'sass/plugins/owl.carousel/owl.carousel.scss',
+    config.srcPath+'sass/plugins/owl.carousel/owl.theme.default.scss',
+    config.srcPath+'sass/plugins/owl.carousel/owl.theme.green.scss'
   ])
   .pipe(gulp.dest(config.srcPath+'sass/plugins/owl.carousel'));
   rename({prefix: '_', extname: '.scss'})
