@@ -1,21 +1,20 @@
 {
-  "name": "bonsai-boot-angularjs",
-  "version": "0.0.2",
-  "description": "Boot model para projetos de frontend usando Node + Gulp + Sass + Compass + Angular",
+  "name": "boot-gulp",
+  "version": "0.0.1",
+  "description": "Boot model para projetos de frontend usando Node + Gulp + Sass + Compass",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/bellentani/bonsai-boot-angularjs.git"
+    "url": "git+ssh://git@github.com/bellentani/boot-gulp.git"
   },
   "keywords": [
     "Gulp",
     "boot",
     "model",
-    "workflow",
-    "Angular"
+    "workflow"
   ],
   "author": "Poe Bellentani",
   "license": "MIT",

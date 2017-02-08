@@ -3,14 +3,9 @@ appAngular = angular
     //Controllers
     .controller('AppController', AppController)
     .controller('HomeController', HomeController)
-    .controller('ProdutosController', ProdutosController)
-    .controller('DetalheController', DetalheController)
-    .controller('VariacaoProdutosController', VariacaoProdutosController)
 
     //directives
-    .directive('editable', editable)
-    .directive('select2', select2)
-
+    
     //Filters
 
     //Outros
@@ -29,7 +24,7 @@ function config($stateProvider, $urlRouterProvider, $compileProvider, $locationP
     .state('template', {
         url: '',
         abstract: true,
-        templateUrl: 'app/views/templates/layout.html?r=' + rand,
+        templateUrl: 'views/templates/layout.html?r=' + rand,
         controller: 'AppController as App'
     })
     .state('template.home', {
@@ -37,9 +32,6 @@ function config($stateProvider, $urlRouterProvider, $compileProvider, $locationP
         templateUrl: 'views/home/home.html?r=' + rand,
         controller: 'HomeController as Home'
     })
-
-
-
     //RestAngular
     RestangularProvider.setResponseExtractor(function (response, operation, url) {
         if (response.Data != undefined) {

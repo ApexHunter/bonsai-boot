@@ -19,6 +19,7 @@ regexRename = require('gulp-regex-rename'),
 concat = require('gulp-concat');
 
 var config = {
+  rootPath: './',
   srcPath: 'src/',
   distPath: 'dist/',
   angularPath: 'app/',
@@ -32,8 +33,8 @@ gulp.task('browserSync', function() {
     server: {
       baseDir: config.distPath,
     },
-    port: 8080,
-    startPath: 'main.html',
+    port: 3000,
+    startPath: 'index.html',
   })
 });
 
@@ -76,7 +77,8 @@ gulp.task('copy:root', function() {
 gulp.task('images', function() {
   return gulp.src([
     config.srcPath+'**/*.{png,jpg,gif,svg}',
-    '!'+config.srcPath+'fonts/**/*.*'
+    '!'+config.srcPath+'fonts/**/*.*',
+    '!'+config.srcPath+'components/**/*.*'
   ])
   .pipe(gulp.dest(config.distPath))
 });
@@ -101,23 +103,24 @@ gulp.task('root-files', function() {
 gulp.task('js', function() {
   return gulp.src([
     config.srcPath+'**/*.js',
-    '!'+config.srcPath+'templates/**/*.*'
+    '!'+config.srcPath+'templates/**/*.*',
+    '!'+config.srcPath+'components/**/*.*'
   ])
   .pipe(gulp.dest(config.distPath))
 });
 
 gulp.task('useref', function(){
-  return gulp.src(config.distPath+'/carousels.html')
+  return gulp.src(config.distPath+'*.html')
     .pipe(useref())
     .pipe(gulpIf('*.js', uglify()))
     .pipe(gulpIf('*.css', cssnano()))
-    .pipe(rename({prefix: '_'}))
+    //.pipe(rename({prefix: 'prod_'}))
     .pipe(gulp.dest(config.distPath))
 });
 
 //Angular Tasks
 //Scripts Task
-gulp.task('scriptsApp', function () {
+gulp.task('angular-components', function () {
   gulp.src([config.angularPath+'**/*.js', '!'+config.angularPath+'**/*.min.js'])
     .pipe(sourcemaps.init())
     .pipe(concat(config.angularPath+'app.min.js'))
@@ -128,8 +131,9 @@ gulp.task('scriptsApp', function () {
 });
 
 //Directives task
-gulp.task('directiveApp', function () {
+gulp.task('angular-directives', function () {
   gulp.src([config.angularPath+'directives/**/*.js', '!'+config.angularPath+'directives/**/*.min.js'])
+    .pipe(sourcemaps.init())
     .pipe(concat(config.angularPath+'directives.min.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
@@ -137,13 +141,32 @@ gulp.task('directiveApp', function () {
     .pipe(browserSync.stream());
 });
 
-gulp.task('scriptsControllers', function () {
+gulp.task('angular-controllers', function () {
   gulp.src([config.angularPath+'views/**/*.js', '!'+config.angularPath+'views/**/*.min.js'])
     .pipe(sourcemaps.init())
     .pipe(concat(config.angularPath+'controllers.min.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('angular-views', function () {
+  gulp.src([config.angularPath+'views/**/*.html'])
+    .pipe(gulp.dest(config.distPath+config.angularPath))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('angular-files-min', function () {
+  gulp.src([
+    config.angularPath+'/app.min.js',
+    config.angularPath+'/app.min.js.map',
+    config.angularPath+'/controllers.min.js',
+    config.angularPath+'/controllers.min.js.map',
+    config.angularPath+'/directives.min.js',
+    config.angularPath+'/directives.min.js.map'
+  ])
+    .pipe(gulp.dest(config.distPath+config.angularPath))
     .pipe(browserSync.stream());
 });
 
@@ -235,7 +258,7 @@ gulp.task('copy-templates', function() {
 //Funciona quando usando o Compass - depende do Rails + Sass + Compass instalados e configurados na máquina
 gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
   runSequence('hbs', //clean:dist e a task original aqui, removida porque deu problema no windows
-    ['hbs', 'compass', 'js', 'useref', 'images', 'fonts', 'root-files'],
+    ['hbs', 'compass', 'js', 'images', 'fonts', 'root-files'],
     'clean-templates',
     callback
   );
@@ -248,12 +271,14 @@ gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
   gulp.watch(config.srcPath+'sass/**/*.+(scss|sass)', ['compass']);
   gulp.watch([
     config.srcPath+'fonts/**/*',
-    '!'+config.srcPath+'fonts/**/*.+(html|css)'
+    '!'+config.srcPath+'fonts/**/*.+(html|css)',
+    '!'+config.srcPath+'components/**/*.*'
   ], ['fonts']);
   gulp.watch([
     config.srcPath+'**/*.js',
     '!'+config.srcPath+'templates/**/*.*',
-    '!'+config.angularPath+'**/*.js'
+    '!'+config.angularPath+'**/*.js',
+    '!'+config.srcPath+'components/**/*.*',
   ], ['js']);
   gulp.watch([
     config.srcPath+'**/*.{png,jpg,gif,svg}',
@@ -263,39 +288,65 @@ gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
     config.srcPath+'*.{ico,jpg,png,gif,txt,xml}',
     '!'+config.srcPath+'*.+(zip|rar|psd|ai|pdf)'
   ], ['root-files']);
-  //angular watch
 
+  //Global
+  // gulp.watch([
+  //   config.rootPath+'*.html'
+  // ], ['useref']);
+
+  //angular watch
+  //Angular components
   gulp.watch([
     config.angularPath+'**/*.js',
-    '!'+config.angularPath+'**/*min.js'
-  ], ['scriptsApp']);
+    '!'+config.angularPath+'**/*min.js',
+    '!'+config.srcPath+'components/**/*.*'
+  ], ['angular-components', 'angular-files-min']);
+  //Angular controllers
   gulp.watch([
     config.angularPath+'views/**/*.js',
     '!'+config.angularPath+'views/**/*min.js'
-  ], ['scriptsControllers']);
+  ], ['angular-controllers', 'angular-files-min']);
+  //Angular directivas
   gulp.watch([
     config.angularPath+'directives/**/*.js',
     '!'+config.angularPath+'directives/**/*min.js'
-  ], ['directiveApp']);
+  ], ['angular-directives', 'angular-files-min']);
+  //Angular views
+  gulp.watch([
+    config.angularPath+'views/**/*.html',
+  ], ['angular-views']);
 
+  //global watch
   gulp.watch([
     config.srcPath+'fonts/**/*',
     config.distPath+'js/**/*.js',
     config.distPath+'*.[html|css]',
-    '!'+config.srcPath+'fonts/**/*.+(html|css)'
+    '!'+config.srcPath+'fonts/**/*.+(html|css)',
+    '!'+config.srcPath+'components/**/*.*'
   ], browserSync.reload);
 });
 
 gulp.task('build', function (callback) {
-  runSequence('clean:dist',
-    ['compass', 'js', 'hbs', 'clean-templates', 'images', 'fonts', 'scriptsApp', 'scriptsControllers', 'directiveApp'],
+  runSequence(
+    'clean:dist',
+    'hbs',
+    'compass',
+    'clean-templates',
+    'js',
+    'images',
+    'fonts',
+    'angular-components',
+    'angular-controllers',
+    'angular-directives',
+    'angular-views',
+    'angular-files-min',
+    //['compass', 'js', 'clean-templates', 'images', 'fonts', 'angular-components', 'angular-controllers', 'angular-directives'],
     callback
   )
 });
 
 gulp.task('build:min', function (callback) {
-  runSequence('clean:dist',
-    ['compass', 'js', 'hbs', 'useref', 'images', 'images:opt', 'fonts'],
+  runSequence('useref',
     callback
   )
 });
@@ -422,7 +473,7 @@ gulp.task('init', function (callback) {
 
 //Tarefa padrão do Gulp
 gulp.task('default', function (callback) {
-  runSequence(['build', 'browserSync', 'watch'],
+  runSequence(['browserSync', 'watch'],
     callback
   )
 });
