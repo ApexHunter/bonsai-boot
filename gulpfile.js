@@ -22,8 +22,8 @@ var config = {
   rootPath: './',
   srcPath: 'src/',
   distPath: 'dist/',
-  angularPath: 'app/',
-  bowerDir: 'src/components'
+  angularPath: 'src/app/',
+  bowerDir: 'src/components/'
 };
 
 require('gulp-stats')(gulp);
@@ -78,7 +78,8 @@ gulp.task('images', function() {
   return gulp.src([
     config.srcPath+'**/*.{png,jpg,gif,svg}',
     '!'+config.srcPath+'fonts/**/*.*',
-    '!'+config.srcPath+'components/**/*.*'
+    '!'+config.srcPath+'components/**/*.*',
+    '!'+config.angularPath+'fonts/**/*.*'
   ])
   .pipe(gulp.dest(config.distPath))
 });
@@ -86,7 +87,8 @@ gulp.task('images', function() {
 gulp.task('images:opt', function() {
   return gulp.src([
     config.distPath+'**/*.{png,jpg,gif,svg}',
-    '!'+config.srcPath+'fonts/**/*.*'
+    '!'+config.srcPath+'fonts/**/*.*',
+    '!'+config.angularPath+'fonts/**/*.*'
   ])
   .pipe(imagemin())
   .pipe(gulp.dest(config.distPath))
@@ -104,7 +106,8 @@ gulp.task('js', function() {
   return gulp.src([
     config.srcPath+'**/*.js',
     '!'+config.srcPath+'templates/**/*.*',
-    '!'+config.srcPath+'components/**/*.*'
+    '!'+config.srcPath+'components/**/*.*',
+    '!'+config.angularPath+'**/*.*'
   ])
   .pipe(gulp.dest(config.distPath))
 });
@@ -153,7 +156,7 @@ gulp.task('angular-controllers', function () {
 
 gulp.task('angular-views', function () {
   gulp.src([config.angularPath+'views/**/*.html'])
-    .pipe(gulp.dest(config.distPath+config.angularPath))
+    .pipe(gulp.dest(config.distPath+'app'))
     .pipe(browserSync.stream());
 });
 
@@ -166,17 +169,8 @@ gulp.task('angular-files-min', function () {
     config.angularPath+'/directives.min.js',
     config.angularPath+'/directives.min.js.map'
   ])
-    .pipe(gulp.dest(config.distPath+config.angularPath))
+    .pipe(gulp.dest(config.distPath+'app'))
     .pipe(browserSync.stream());
-});
-
-gulp.task('angular-minify', function() {
-  gulp.src([
-    config.srcPath+'**/*.js',
-    '!'+config.srcPath+'templates/**/*.*'
-  ])
-  .pipe(uglify())
-  .pipe(gulp.dest(config.distPath))
 });
 
 gulp.task('hbs', function() {
@@ -298,18 +292,18 @@ gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
   //Angular components
   gulp.watch([
     config.angularPath+'**/*.js',
-    '!'+config.angularPath+'**/*min.js',
+    '!'+config.angularPath+'**/*.min.js',
     '!'+config.srcPath+'components/**/*.*'
   ], ['angular-components', 'angular-files-min']);
   //Angular controllers
   gulp.watch([
     config.angularPath+'views/**/*.js',
-    '!'+config.angularPath+'views/**/*min.js'
+    '!'+config.angularPath+'views/**/*.min.js'
   ], ['angular-controllers', 'angular-files-min']);
   //Angular directivas
   gulp.watch([
     config.angularPath+'directives/**/*.js',
-    '!'+config.angularPath+'directives/**/*min.js'
+    '!'+config.angularPath+'directives/**/*.min.js'
   ], ['angular-directives', 'angular-files-min']);
   //Angular views
   gulp.watch([
@@ -319,9 +313,10 @@ gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
   //global watch
   gulp.watch([
     config.srcPath+'fonts/**/*',
-    config.distPath+'js/**/*.js',
+    config.distPath+'**/*.js',
     config.distPath+'*.[html|css]',
     '!'+config.srcPath+'fonts/**/*.+(html|css)',
+    '!'+config.angularPath+'directives/**/*.min.js',
     '!'+config.srcPath+'components/**/*.*'
   ], browserSync.reload);
 });
@@ -361,40 +356,40 @@ gulp.task('bowerInit', function() {
 gulp.task('jsBower', function() {
   //vendors
   gulp.src([
-    config.bowerDir+'/jquery/dist/jquery.js',
-    config.bowerDir+'/jquery/dist/jquery.min.js',
-    config.bowerDir+'/isMobile/isMobile.js',
-    config.bowerDir+'/isMobile/isMobile.min.js',
-    config.bowerDir+'/bootstrap-sass/assets/javascripts/**/*.*',
-    config.bowerDir+'/underscore/underscore.js',
-    config.bowerDir+'/underscore/underscore.min.js',
-    config.bowerDir+'/backbone/backbone.js',
-    config.bowerDir+'/backbone/backbone.min.js',
-    config.bowerDir+'/elevatezoom/jquery.elevatezoom.js',
-    config.bowerDir+'/prism/prism.js',
+    config.bowerDir+'jquery/dist/jquery.js',
+    config.bowerDir+'jquery/dist/jquery.min.js',
+    config.bowerDir+'isMobile/isMobile.js',
+    config.bowerDir+'isMobile/isMobile.min.js',
+    config.bowerDir+'bootstrap-sass/assets/javascripts/**/*.*',
+    config.bowerDir+'underscore/underscore.js',
+    config.bowerDir+'underscore/underscore.min.js',
+    config.bowerDir+'backbone/backbone.js',
+    config.bowerDir+'backbone/backbone.min.js',
+    config.bowerDir+'elevatezoom/jquery.elevatezoom.js',
+    config.bowerDir+'prism/prism.js',
     //Angular.js
-    config.bowerDir+'/angular/angular.min.js',
-    config.bowerDir+'/angular-bootstrap/ui-bootstrap-tpls.min.js',
-    config.bowerDir+'/angular-touch/angular-touch.js',
-    config.bowerDir+'/angular-animate/angular-animate.js',
-    config.bowerDir+'/angular-ui-router/release/angular-ui-router.min.js',
-    config.bowerDir+'/angular-sanitize/angular-sanitize.js'
+    config.bowerDir+'angular/angular.min.js',
+    config.bowerDir+'angular-bootstrap/ui-bootstrap-tpls.min.js',
+    config.bowerDir+'angular-touch/angular-touch.js',
+    config.bowerDir+'angular-animate/angular-animate.js',
+    config.bowerDir+'angular-ui-router/release/angular-ui-router.min.js',
+    config.bowerDir+'angular-sanitize/angular-sanitize.js'
   ])
   .pipe(gulp.dest(config.srcPath+'js/vendor/'));
 
   //plugins
   gulp.src([
-    config.bowerDir+'/owl.carousel/dist/owl.carousel.js',
-    config.bowerDir+'/owl.carousel/dist/owl.carousel.min.js',
-    config.bowerDir+'/bootstrap-select/dist/js/*.js',
-    config.bowerDir+'/iCheck/*.js'
+    config.bowerDir+'owl.carousel/dist/owl.carousel.js',
+    config.bowerDir+'owl.carousel/dist/owl.carousel.min.js',
+    config.bowerDir+'bootstrap-select/dist/js/*.js',
+    config.bowerDir+'iCheck/*.js'
   ])
   .pipe(gulp.dest(config.srcPath+'js/plugins/'));
 });
 gulp.task('scssBower', function() {
   //owl.carousel specifics
   gulp.src([
-    config.bowerDir+'/owl.carousel/src/scss/*.scss',
+    config.bowerDir+'owl.carousel/src/scss/*.scss',
   ])
   .pipe(gulp.dest(config.srcPath+'sass/plugins/owl.carousel'));
 
@@ -409,7 +404,7 @@ gulp.task('scssBower', function() {
 
   //iCheck css
   gulp.src([
-    config.bowerDir+'/iCheck/skins/**/*.css'
+    config.bowerDir+'iCheck/skins/**/*.css'
   ])
   //.pipe(gulpif(condition, rename({prefix: '_', extname: '.scss'}) ))
   .pipe(rename({prefix: '_', extname: '.scss'}))
@@ -417,27 +412,27 @@ gulp.task('scssBower', function() {
 
   //Font Awesome
   gulp.src([
-    config.bowerDir+'/components-font-awesome/scss/**/*.scss'
+    config.bowerDir+'components-font-awesome/scss/**/*.scss'
   ])
   //.pipe(gulpif(condition, rename({prefix: '_', extname: '.scss'}) ))
   .pipe(gulp.dest(config.srcPath+'sass/fontawesome/'));
 
   //Font Awesome Fonts
   gulp.src([
-    config.bowerDir+'/components-font-awesome/fonts/**/*.*'
+    config.bowerDir+'components-font-awesome/fonts/**/*.*'
   ])
   //.pipe(gulpif(condition, rename({prefix: '_', extname: '.scss'}) ))
   .pipe(gulp.dest(config.srcPath+'fonts/fontawesome/'));
 
   //iCheck img
   gulp.src([
-    config.bowerDir+'/iCheck/skins/**/*.png'
+    config.bowerDir+'iCheck/skins/**/*.png'
   ])
   .pipe(gulp.dest(config.srcPath+'sass/plugins/icheck/'));
 
   //bootstrap-select
   gulp.src([
-    config.bowerDir+'/bootstrap-select/sass/**/*.scss'
+    config.bowerDir+'bootstrap-select/sass/**/*.scss'
   ])
   //.pipe(gulpif(condition, rename({prefix: '_', extname: '.scss'}) ))
   .pipe(rename({prefix: '_' }))
@@ -445,7 +440,7 @@ gulp.task('scssBower', function() {
 
   //prism
   gulp.src([
-    config.bowerDir+'/prism/themes/**/*.css'
+    config.bowerDir+'prism/themes/**/*.css'
   ])
   .pipe(rename({prefix: '_', extname: '.scss'}))
   .pipe(gulp.dest(config.srcPath+'sass/plugins/prism/'));
@@ -453,12 +448,12 @@ gulp.task('scssBower', function() {
   //Bootstrap
   //-> scss
   gulp.src([
-    config.bowerDir+'/bootstrap-sass/assets/stylesheets/**/*.*'
+    config.bowerDir+'bootstrap-sass/assets/stylesheets/**/*.*'
   ])
   .pipe(gulp.dest(config.srcPath+'sass/'));
   //-> fonts
   gulp.src([
-    config.bowerDir+'/bootstrap-sass/assets/fonts/**/*.*'
+    config.bowerDir+'bootstrap-sass/assets/fonts/**/*.*'
   ])
   .pipe(gulp.dest(config.srcPath+'fonts/'));
 });
