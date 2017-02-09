@@ -48,7 +48,9 @@
     "gulp-stats": "0.0.3",
     "gulp-uglify": "^2.0.0",
     "gulp-useref": "^3.1.2",
+    "node-bourbon": "^4.2.8",
     "node-dir": "^0.1.16",
+    "node-neat": "^1.7.2",
     "run-sequence": "^1.2.2"
   }
 }
