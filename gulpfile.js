@@ -78,6 +78,7 @@ gulp.task('images', function() {
   return gulp.src([
     config.srcPath+'**/*.{png,jpg,gif,svg}',
     '!'+config.srcPath+'fonts/**/*.*',
+    '!'+config.srcPath+'sass/**/*.*',
     '!'+config.srcPath+'components/**/*.*',
     '!'+config.angularPath+'fonts/**/*.*'
   ])
@@ -98,6 +99,14 @@ gulp.task('root-files', function() {
   return gulp.src([
     config.srcPath+'*.{ico,jpg,png,gif,txt,xml}',
     '!'+config.srcPath+'*.+(zip|rar|psd|ai|pdf)'
+  ])
+  .pipe(gulp.dest(config.distPath))
+});
+
+gulp.task('sample-files', function() {
+  return gulp.src([
+    config.srcPath+'samples/**/*.*',
+    '!'+config.srcPath+'**/*.md'
   ])
   .pipe(gulp.dest(config.distPath))
 });
@@ -252,7 +261,7 @@ gulp.task('copy-templates', function() {
 //Funciona quando usando o Compass - depende do Rails + Sass + Compass instalados e configurados na máquina
 gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
   runSequence('hbs', //clean:dist e a task original aqui, removida porque deu problema no windows
-    ['hbs', 'compass', 'js', 'images', 'fonts', 'root-files'],
+    ['compass', 'js', 'images', 'fonts', 'root-files', 'sample-files'],
     'clean-templates',
     callback
   );
@@ -330,6 +339,8 @@ gulp.task('build', function (callback) {
     'js',
     'images',
     'fonts',
+    'sample-files',
+    'root-files',
     'angular-components',
     'angular-controllers',
     'angular-directives',
