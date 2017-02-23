@@ -18,7 +18,8 @@ imagemin = require('gulp-imagemin'),
 runSequence = require('run-sequence'),
 bower = require('gulp-bower'),
 regexRename = require('gulp-regex-rename'),
-concat = require('gulp-concat');
+concat = require('gulp-concat'),
+babel = require('gulp-babel');
 
 var config = {
   rootPath: './',
@@ -137,6 +138,8 @@ gulp.task('js', function() {
     '!'+config.srcPath+'components/**/*.*',
     '!'+config.angularPath+'**/*.*'
   ])
+  //.pipe(print())
+  .pipe(babel({ presets: ['es2015'] }))
   .pipe(gulp.dest(config.distPath))
 });
 
