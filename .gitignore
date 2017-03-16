@@ -2,7 +2,5 @@
 node_modules/
 npm-debug.log
 **/_notes
-dist/
-src/components
-app/**/*.min.js
-app/**/*.map
+static/dist/
+static/src/components

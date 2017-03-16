@@ -45,14 +45,16 @@
     "gulp-postcss": "^6.2.0",
     "gulp-regex-rename": "^0.1.0",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.3.2",
+    "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.2.0",
     "gulp-stats": "0.0.3",
     "gulp-uglify": "^2.0.0",
     "gulp-useref": "^3.1.2",
     "node-bourbon": "^4.2.8",
     "node-dir": "^0.1.16",
-    "node-neat": "^1.7.2",
-    "run-sequence": "^1.2.2"
+    "node-neat": "^2.0.0-beta.0",
+    "rimraf": "^2.6.1",
+    "run-sequence": "^1.2.2",
+    "vinyl-paths": "^2.1.0"
   }
 }
