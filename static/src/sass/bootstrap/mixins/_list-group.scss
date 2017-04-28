@@ -4,6 +4,8 @@
   .list-group-item-#{$state} {
     color: $color;
     background-color: $background;
+
+    // [converter] extracted a&, button& to a.list-group-item-#{$state}, button.list-group-item-#{$state}
   }
 
   a.list-group-item-#{$state},
@@ -14,12 +16,14 @@
       color: inherit;
     }
 
-    @include hover-focus {
+    &:hover,
+    &:focus {
       color: $color;
       background-color: darken($background, 5%);
     }
-
-    &.active {
+    &.active,
+    &.active:hover,
+    &.active:focus {
       color: #fff;
       background-color: $color;
       border-color: $color;

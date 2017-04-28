@@ -1,7 +1,8 @@
 //
 // codes.js
 //
-const nomeTeste = 'nomelindo';
+
+const varDeTeste = 'uma string';
 
 export class TapeMachine{
     constructor(){
@@ -15,4 +16,4 @@ export class TapeMachine{
     }
 }
 
-console.log(nomeTeste);
+console.log(varDeTeste);

@@ -96,7 +96,7 @@ gulp.task('copy:root', function() {
 
 gulp.task('images', function() {
   return gulp.src([
-    config.srcPath+'**/*.{png,jpg,gif,svg}',
+    config.srcPath+'**/*.{png,jpg,gif,svg,ico}',
     '!'+config.srcPath+'fonts/**/*.*',
     '!'+config.srcPath+'sass/**/*.*',
     '!'+config.srcPath+'components/**/*.*',
@@ -107,7 +107,7 @@ gulp.task('images', function() {
 
 gulp.task('images:opt', function() {
   return gulp.src([
-    config.distPath+'**/*.{png,jpg,gif,svg}',
+    config.distPath+'**/*.{png,jpg,gif,svg,ico}',
     '!'+config.srcPath+'fonts/**/*.*',
     '!'+config.angularPath+'fonts/**/*.*'
   ])
@@ -165,7 +165,7 @@ gulp.task('hbs', function() {
   //var path = require('path');
   //var partialsList = './'+config.srcPath+'templates/partials'+path;
   var partialsDir = config.srcPath+'templates/partials';
-  //var dirName = path.dirname(partialsList);
+  //var dirName = path.dirnamsasse(partialsList);
   //console.log(dirName);
   //options do beautify
   var beautifyOptions = {
@@ -250,7 +250,7 @@ gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
     config.srcPath+'templates/data/**/*.*'
   ], ['hbs']);
 
-  gulp.watch(config.srcPath+'sass/**/*.+(scss|sass)', ['sass']);
+  gulp.watch(config.srcPath+'sass/**/*.+(scss|sass)', ['compass']);
   gulp.watch([
     config.srcPath+'fonts/**/*',
     '!'+config.srcPath+'fonts/**/*.+(html|css)',
@@ -285,7 +285,7 @@ gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
   gulp.watch([
     config.srcPath+'fonts/**/*',
     config.distPath+'**/*.js',
-    config.distPath+'*.[html|css]',
+    config.distPath+'**/*.[html|css]',
     '!'+config.srcPath+'fonts/**/*.+(html|css)',
     '!'+config.angularPath+'**/*.html',
     '!'+config.angularPath+'**/*.js',
@@ -299,7 +299,7 @@ gulp.task('build', function (callback) {
   runSequence(
     'clean:dist',
     'hbs',
-    'sass',
+    'compass',
     'clean-templates',
     'js',
     'js-babel',

@@ -1,68 +1,14 @@
-// @import "compass";
+@import "compass";
 @import "bootstrap/variables";
-
-@import "bourbon";
-@import "neat";
-
 @import "font-awesome/font-awesome";
 @import "project/variables";
-// @import "project/global";
-// @import "project/box-product";
-// @import "project/navbar-custom";
-// @import "project/form";
-//
-// @import "project/footer";
-// @import "project/icons";
-//
-// @import "project/molecules/carousels";
-// @import "project/organisms/gallery";
+@import "project/global";
+@import "project/box-product";
+@import "project/navbar-custom";
+@import "project/form";
 
-//$mobile: new-breakpoint(max-width 480px);
-//$desktop: new-breakpoint(min-width 850px);
+@import "project/footer";
+@import "project/icons";
 
-body {
-  //background-color: #ebebeb;
-}
-
-/*
- * Style tweaks
- * --------------------------------------------------
- */
-html,
-body {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
-}
-body {
-  padding-top: 70px;
-}
-footer {
-  padding: 30px 0;
-}
-
-
-
-
-// Bourbon & Neat test, just to debugging
-// $custom-grid: (
-//   columns: 12,
-//   gutter: 50px,
-//   media: 640px,
-// );
-// .page {
-//   background-color: red;
-//   color: blue;
-//
-//   &--internal {
-//     @include grid-container;
-//
-//     @include grid-media($custom-grid) {
-//       @include grid-column(12);
-//     }
-//
-//     @include grid-column(6);
-//
-//     h1 {
-//       font-family: Arial, sans-serif;
-//     }
-//   }
-// }
+@import "project/molecules/carousels";
+@import "project/organisms/gallery";
