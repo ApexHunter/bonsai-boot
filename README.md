@@ -7,7 +7,7 @@ A ideia é utilizar nesse workflow:
 * Levantar um servidor básico usando Express
 * Fazer reload automático quando uma página for alterada (live preview)
 * Testar, corrigir e minificar Javascript de Frontend
-* Instalar bibliotecas e recursos utilizando Bower
+* Instalar bibliotecas e recursos utilizando Yarn
 * Deixar apenas como pré-requisito o Node.js, Express.js e o Gulp.js (tentar utilizar no futuro o Bourbon, que ainda não está funcional com seu grid integral como framework)
 
 
@@ -17,9 +17,9 @@ Caso não tenha o Gulp instalado globalmente:
 
 ``npm install gulp -g``
 
-Também é preciso instalar o Bower globalmente:
+Também é preciso instalar o Yarn globalmente:
 
-``npm install bower -g``
+``npm install --global yarn``
 
 ##Instalação
 
@@ -89,28 +89,31 @@ localhost:8080/umdiretorio/seuarquivo.html
 ##Estrutura de pastas
 
 ```
-dist (arquivos gerados pela task ``gulp deploy`` ou pela ``gulp-watch``)
-  |_css
-    |_ ...
-  |_img
-  |_js
-    |_plugins
-    |_vendors
-    |_ ...
-src
-  |_scss
-    |_ ...
-  |_img
-  |_js
-    |_plugins
-    |_vendors
-    |_ ...
-  |_templates
-    |_data
-    |_helpers
-    |_pages
-    |_partials
-      |_molecules
+static
+  |_dist (arquivos gerados pela task ``gulp deploy`` ou pela ``gulp-watch``)
+    |_css
+      |_ ...
+    |_img
+    |_js
+      |_plugins
+      |_vendors
+      |_ ...
+  src
+    |_scss
+      |_ ...
+    |_img
+    |_js
+      |_plugins
+      |_vendors
+      |_ ...
+    |_templates
+      |_data
+      |_helpers
+      |_pages
+      |_partials
+        |_atoms
+        |_molecules
+        |_organisms
 ```
 
 ##Atualização

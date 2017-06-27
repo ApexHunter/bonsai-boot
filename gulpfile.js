@@ -1,5 +1,7 @@
 var gulp = require('gulp'),
+autoprefixer = require('gulp-autoprefixer'),
 sass = require('gulp-sass'),
+sassdoc = require('sassdoc'),
 compass = require('gulp-compass'),
 bourbon = require('node-bourbon').includePaths,
 neat = require('node-neat').includePaths,
@@ -17,7 +19,7 @@ gulpIf = require('gulp-if'),
 cssnano = require('gulp-cssnano'),
 imagemin = require('gulp-imagemin'),
 runSequence = require('run-sequence'),
-bower = require('gulp-bower'),
+yarn = require('gulp-yarn'),
 regexRename = require('gulp-regex-rename'),
 concat = require('gulp-concat'),
 babel = require('gulp-babel');
@@ -27,10 +29,15 @@ var config = {
   srcPath: 'static/src/',
   distPath: 'static/dist/',
   angularPath: 'src/app/',
-  bowerDir: 'static/src/components/'
+  yarnPath: 'node_modules/'
 };
 
 require('gulp-stats')(gulp);
+
+gulp.task('yarn', function() {
+    return gulp.src(['./package.json'])
+        .pipe(yarn());
+});
 
 gulp.task('browserSync', function() {
   browserSync.init({
@@ -64,19 +71,83 @@ gulp.task('compass', function() {
 });
 
 //Sass com Bourbon + Neat
+// gulp.task('sass', function() {
+//   gulp.src(config.srcPath+'sass/**/*.+(scss|sass)')
+//     .pipe(sourcemaps.init())
+//     .pipe(sass({
+//       includePaths: [bourbon, neat],
+//       //outputStyle: 'compressed'
+//     }))
+//     .pipe(sourcemaps.write('./'))
+//     .pipe(gulp.dest(config.distPath+'css'))
+//     .pipe(browserSync.reload({
+//       stream: true
+//     }));
+// });
+
+//Sass com Bourbon + Neat
+var sassOptions = {
+  errLogToConsole: true,
+  outputStyle: 'compressed', //compressed
+  includePaths: [bourbon, neat]
+};
+var autoprefixerOptions = {
+  browsers: ['last 5 versions', '> 5%', 'Firefox ESR']
+};
 gulp.task('sass', function() {
-  gulp.src(config.srcPath+'sass/**/*.+(scss|sass)')
+  return gulp
+    .src(config.srcPath+'sass/**/*.+(scss|sass)')
     .pipe(sourcemaps.init())
-    .pipe(sass({
-      includePaths: [bourbon, neat],
-      outputStyle: 'compressed'
-    }))
-    .pipe(sourcemaps.write('./'))
+    .pipe(sass(sassOptions).on('error', sass.logError))
+    .pipe(sourcemaps.write())
+    .pipe(autoprefixer(autoprefixerOptions))
     .pipe(gulp.dest(config.distPath+'css'))
     .pipe(browserSync.reload({
       stream: true
     }));
 });
+
+var sassdocOptions = {
+  dest: config.distPath+'sassdoc'
+};
+gulp.task('sassdoc', function () {
+  return gulp
+    .src(config.srcPath+'sass/**/*.+(scss|sass)')
+    .pipe(sassdoc(sassdocOptions))
+    .resume();
+});
+
+// gulp.task('autoprefixer', function () {
+//   return gulp.src(config.distPath+'css/**/*.css')
+//     //.pipe(sourcemaps.init())
+//     .pipe(autoprefixer({
+//       browsers: ['last 4 versions']
+//     }))
+//     .pipe(sourcemaps.write('./'))
+//     .pipe(gulp.dest(config.distPath+'css'))
+//     .pipe(browserSync.reload({
+//       stream: true
+//     }));
+// });
+//
+// gulp.task('mincss', function () {
+//   return gulp.src(config.distPath+'css/**/*.css')
+//     .pipe(sourcemaps.init())
+//     .pipe(cssnano())
+//     .pipe(sourcemaps.write('./'))
+//     .pipe(gulp.dest(config.distPath+'css'))
+//     .pipe(browserSync.reload({
+//       stream: true
+//     }));
+// });
+//
+// gulp.task('sass', function (callback) {
+//   runSequence(
+//     'bourbonsass',
+//     'autoprefixer',
+//     callback
+//   )
+// });
 
 gulp.task('fonts', function() {
   return gulp.src([
@@ -240,7 +311,7 @@ gulp.task('copy-templates', function() {
 //Funciona quando usando o Compass - depende do Rails + Sass + Compass instalados e configurados na máquina
 gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
   runSequence('hbs', //clean:dist e a task original aqui, removida porque deu problema no windows
-    ['compass', 'js', 'js-babel', 'images', 'fonts', 'root-files', 'sample-files'],
+    ['sass', 'js', 'js-babel', 'images', 'fonts', 'root-files', 'sample-files'],
     'clean-templates',
     callback
   );
@@ -250,7 +321,7 @@ gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
     config.srcPath+'templates/data/**/*.*'
   ], ['hbs']);
 
-  gulp.watch(config.srcPath+'sass/**/*.+(scss|sass)', ['compass']);
+  gulp.watch(config.srcPath+'sass/**/*.+(scss|sass)', ['sass']);
   gulp.watch([
     config.srcPath+'fonts/**/*',
     '!'+config.srcPath+'fonts/**/*.+(html|css)',
@@ -299,7 +370,7 @@ gulp.task('build', function (callback) {
   runSequence(
     'clean:dist',
     'hbs',
-    'compass',
+    'sass',
     'clean-templates',
     'js',
     'js-babel',
@@ -319,113 +390,61 @@ gulp.task('build:min', function (callback) {
 });
 
 /*/------------------//
-   Controles do Bower
+   Controles do Yarn
 /-------------------/*/
-gulp.task('bowerInit', function() {
-  return bower()
+gulp.task('projectInit', function() {
+  return yarn()
 });
 //Copia JS do Bower
-gulp.task('jsBower', function() {
-  //vendors
-  gulp.src([
-    config.bowerDir+'jquery/dist/jquery.js',
-    config.bowerDir+'jquery/dist/jquery.min.js',
-    config.bowerDir+'isMobile/isMobile.js',
-    config.bowerDir+'isMobile/isMobile.min.js',
-    config.bowerDir+'bootstrap/dist/js/**/*.*',
-    config.bowerDir+'underscore/underscore.js',
-    config.bowerDir+'underscore/underscore.min.js',
-    config.bowerDir+'backbone/backbone.js',
-    config.bowerDir+'backbone/backbone.min.js',
-    config.bowerDir+'elevatezoom/jquery.elevatezoom.js',
-    config.bowerDir+'prism/prism.js'
-  ])
-  .pipe(gulp.dest(config.srcPath+'js/vendor/'));
+gulp.task('jsYarn', function() {
+  // //vendors
+  // gulp.src([
+  //   config.yarnPath+'jquery/dist/jquery.js',
+  //   config.yarnPath+'jquery/dist/jquery.min.js',
+  //   config.yarnPath+'isMobile/isMobile.js',
+  //   config.yarnPath+'isMobile/isMobile.min.js',
+  //   config.yarnPath+'bootstrap/dist/js/**/*.*',
+  //   config.yarnPath+'underscore/underscore.js',
+  //   config.yarnPath+'underscore/underscore.min.js',
+  //   config.yarnPath+'backbone/backbone.js',
+  //   config.yarnPath+'backbone/backbone.min.js',
+  //   config.yarnPath+'elevatezoom/jquery.elevatezoom.js',
+  //   config.yarnPath+'prism/prism.js'
+  // ])
+  // .pipe(gulp.dest(config.srcPath+'js/vendor/'));
 
   //bootstrap 4
   gulp.src([
-    config.bowerDir+'bootstrap/js/dist/*.*'
+    config.yarnPath+'bootstrap-v4-dev/js/dist/**/*.*'
   ])
   .pipe(gulp.dest(config.srcPath+'js/vendor/bootstrap'));
 
+  gulp.src([
+    config.yarnPath+'bootstrap-v4-dev/dist/js/*.*'
+  ])
+  .pipe(gulp.dest(config.srcPath+'js/vendor/'));
+
   //plugins
-  gulp.src([
-    config.bowerDir+'owl.carousel/dist/owl.carousel.js',
-    config.bowerDir+'owl.carousel/dist/owl.carousel.min.js',
-    config.bowerDir+'bootstrap-select/dist/js/*.js',
-    config.bowerDir+'iCheck/*.js'
-  ])
-  .pipe(gulp.dest(config.srcPath+'js/plugins/'));
+  // gulp.src([
+  //   config.yarnPath+'owl.carousel/dist/owl.carousel.js',
+  //   config.yarnPath+'owl.carousel/dist/owl.carousel.min.js',
+  //   config.yarnPath+'bootstrap-select/dist/js/*.js',
+  //   config.yarnPath+'iCheck/*.js'
+  // ])
+  // .pipe(gulp.dest(config.srcPath+'js/plugins/'));
 });
-gulp.task('scssBower', function() {
-  //owl.carousel specifics
-  gulp.src([
-    config.bowerDir+'owl.carousel/src/scss/*.scss',
-  ])
-  .pipe(gulp.dest(config.srcPath+'sass/plugins/owl.carousel'));
 
-  //iCheck css
-  gulp.src([
-    config.bowerDir+'iCheck/skins/**/*.css'
-  ])
-  //.pipe(gulpif(condition, rename({prefix: '_', extname: '.scss'}) ))
-  .pipe(rename({prefix: '_', extname: '.scss'}))
-  .pipe(gulp.dest(config.srcPath+'sass/plugins/icheck/'));
-
-  //Font Awesome
-  gulp.src([
-    config.bowerDir+'components-font-awesome/scss/**/*.scss'
-  ])
-  //.pipe(gulpif(condition, rename({prefix: '_', extname: '.scss'}) ))
-  .pipe(gulp.dest(config.srcPath+'sass/fontawesome/'));
-
-  //Font Awesome Fonts
-  gulp.src([
-    config.bowerDir+'components-font-awesome/fonts/**/*.*'
-  ])
-  //.pipe(gulpif(condition, rename({prefix: '_', extname: '.scss'}) ))
-  .pipe(gulp.dest(config.srcPath+'fonts/fontawesome/'));
-
-  //iCheck img
-  gulp.src([
-    config.bowerDir+'iCheck/skins/**/*.png'
-  ])
-  .pipe(gulp.dest(config.srcPath+'sass/plugins/icheck/'));
-
-  //bootstrap-select
-  gulp.src([
-    config.bowerDir+'bootstrap-select/sass/**/*.scss'
-  ])
-  //.pipe(gulpif(condition, rename({prefix: '_', extname: '.scss'}) ))
-  .pipe(rename({prefix: '_' }))
-  .pipe(gulp.dest(config.srcPath+'sass/plugins/bootstrap-select/'));
-
-  //prism
-  gulp.src([
-    config.bowerDir+'prism/themes/**/*.css'
-  ])
-  .pipe(rename({prefix: '_', extname: '.scss'}))
-  .pipe(gulp.dest(config.srcPath+'sass/plugins/prism/'));
-
+//Copia JS do Yarn
+gulp.task('scssYarn', function() {
   //Bootstrap 4
   //-> scss
   gulp.src([
-    config.bowerDir+'bootstrap/scss/**/*.*'
+    config.yarnPath+'bootstrap-v4-dev/scss/**/*.*'
   ])
   .pipe(gulp.dest(config.srcPath+'sass/bootstrap/'));
 });
 
-gulp.task('renameBower', function () {
-  //rename os owl carousels padrao
-  gulp.src([
-    config.srcPath+'sass/plugins/owl.carousel/owl.carousel.scss',
-    config.srcPath+'sass/plugins/owl.carousel/owl.theme.default.scss',
-    config.srcPath+'sass/plugins/owl.carousel/owl.theme.green.scss'
-  ])
-  .pipe(vinylPaths(del))
-  .pipe(rename({prefix: '_' }))
-  .pipe(gulp.dest(config.srcPath+'sass/plugins/owl.carousel'));
-
+gulp.task('renameYarn', function () {
   //-> Bootstrap 4 scss rename
   gulp.src([
     config.srcPath+'sass/bootstrap/bootstrap-grid.scss',

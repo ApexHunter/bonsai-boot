@@ -4,3 +4,4 @@ npm-debug.log
 **/_notes
 static/dist/
 static/src/components
+yearn.lock

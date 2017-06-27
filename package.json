@@ -6,10 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/bellentani/boot-gulp.git"
-  },
+  "repository": "git+ssh://git@github.com/bellentani/boot-gulp.git",
   "keywords": [
     "Gulp",
     "boot",
@@ -32,8 +29,8 @@
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
     "gulp-babel": "^6.1.2",
-    "gulp-bower": "0.0.13",
     "gulp-compass": "^2.1.0",
     "gulp-compile-handlebars": "^0.6.1",
     "gulp-concat": "^2.6.1",
@@ -42,7 +39,7 @@
     "gulp-html-beautify": "^1.0.1",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.1.1",
-    "gulp-postcss": "^6.2.0",
+    "gulp-postcss": "^6.4.0",
     "gulp-regex-rename": "^0.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
@@ -50,11 +47,16 @@
     "gulp-stats": "0.0.3",
     "gulp-uglify": "^2.0.0",
     "gulp-useref": "^3.1.2",
+    "gulp-yarn": "^1.0.0",
     "node-bourbon": "^4.2.8",
     "node-dir": "^0.1.16",
     "node-neat": "^2.0.0-beta.0",
     "rimraf": "^2.6.1",
     "run-sequence": "^1.2.2",
+    "sassdoc": "^2.3.0",
     "vinyl-paths": "^2.1.0"
+  },
+  "dependencies": {
+    "bootstrap-v4-dev": "^4.0.0-alpha.6"
   }
 }
