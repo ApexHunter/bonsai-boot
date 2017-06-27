@@ -2,7 +2,6 @@ var gulp = require('gulp'),
 autoprefixer = require('gulp-autoprefixer'),
 sass = require('gulp-sass'),
 sassdoc = require('sassdoc'),
-compass = require('gulp-compass'),
 bourbon = require('node-bourbon').includePaths,
 neat = require('node-neat').includePaths,
 sourcemaps = require('gulp-sourcemaps'),
@@ -16,7 +15,6 @@ useref = require('gulp-useref'),
 uglify = require('gulp-uglify'),
 htmlbeautify = require('gulp-html-beautify'),
 gulpIf = require('gulp-if'),
-cssnano = require('gulp-cssnano'),
 imagemin = require('gulp-imagemin'),
 runSequence = require('run-sequence'),
 yarn = require('gulp-yarn'),
@@ -49,42 +47,6 @@ gulp.task('browserSync', function() {
   })
 });
 
-//Sass com Compass - para bootstrap
-gulp.task('compass', function() {
-  gulp.src(config.srcPath+'sass/**/*.+(scss|sass)')
-    .pipe(compass({
-      css: config.distPath+'css/',
-      sass: config.srcPath+'sass/',
-      style: 'compressed',
-      sourcemap: true
-    }))
-    .on('error', function(error) {
-      // Would like to catch the error here
-      console.log(error);
-      this.emit('end');
-    })
-    //.pipe(minifyCSS())
-    .pipe(gulp.dest(config.distPath+'css'))
-    .pipe(browserSync.reload({
-      stream: true
-    }));
-});
-
-//Sass com Bourbon + Neat
-// gulp.task('sass', function() {
-//   gulp.src(config.srcPath+'sass/**/*.+(scss|sass)')
-//     .pipe(sourcemaps.init())
-//     .pipe(sass({
-//       includePaths: [bourbon, neat],
-//       //outputStyle: 'compressed'
-//     }))
-//     .pipe(sourcemaps.write('./'))
-//     .pipe(gulp.dest(config.distPath+'css'))
-//     .pipe(browserSync.reload({
-//       stream: true
-//     }));
-// });
-
 //Sass com Bourbon + Neat
 var sassOptions = {
   errLogToConsole: true,
@@ -107,6 +69,7 @@ gulp.task('sass', function() {
     }));
 });
 
+//gera doc do sass (comentário)
 var sassdocOptions = {
   dest: config.distPath+'sassdoc'
 };
@@ -116,38 +79,6 @@ gulp.task('sassdoc', function () {
     .pipe(sassdoc(sassdocOptions))
     .resume();
 });
-
-// gulp.task('autoprefixer', function () {
-//   return gulp.src(config.distPath+'css/**/*.css')
-//     //.pipe(sourcemaps.init())
-//     .pipe(autoprefixer({
-//       browsers: ['last 4 versions']
-//     }))
-//     .pipe(sourcemaps.write('./'))
-//     .pipe(gulp.dest(config.distPath+'css'))
-//     .pipe(browserSync.reload({
-//       stream: true
-//     }));
-// });
-//
-// gulp.task('mincss', function () {
-//   return gulp.src(config.distPath+'css/**/*.css')
-//     .pipe(sourcemaps.init())
-//     .pipe(cssnano())
-//     .pipe(sourcemaps.write('./'))
-//     .pipe(gulp.dest(config.distPath+'css'))
-//     .pipe(browserSync.reload({
-//       stream: true
-//     }));
-// });
-//
-// gulp.task('sass', function (callback) {
-//   runSequence(
-//     'bourbonsass',
-//     'autoprefixer',
-//     callback
-//   )
-// });
 
 gulp.task('fonts', function() {
   return gulp.src([
