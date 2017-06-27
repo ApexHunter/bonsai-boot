@@ -1,4 +1,4 @@
-@import "compass";
+@import "bourbon";
 @import "bootstrap/variables";
 @import "font-awesome/font-awesome";
 @import "project/variables";
@@ -10,10 +10,11 @@
 @import "project/footer";
 @import "project/icons";
 
-@import "project/molecules/carousels";
-@import "project/organisms/gallery";
-
 body {
   border: 1px solid red;
   background-color: #cccccc;
+  @include background-image( linear-gradient(to left, #FFF, $light-gray) );
+  //border-radius: 10px;
+  transition: all .25s;
+  transform: rotate(360deg);
 }

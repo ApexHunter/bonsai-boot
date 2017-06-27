@@ -7,6 +7,12 @@ body {
   font-family: $font-default;
   color: #333;
   font-weight: 100;
+  @include border-top-radius(5px);
+
+  h1 {
+    color: green;
+    @include border-width(1em 20px null 100%);
+  }
 }
 p {
   font-size: 1em;
