@@ -373,6 +373,17 @@ gulp.task('scssYarn', function() {
     config.yarnPath+'bootstrap-v4-dev/scss/**/*.*'
   ])
   .pipe(gulp.dest(config.srcPath+'sass/bootstrap/'));
+
+  //font-awesome
+  gulp.src([
+    config.yarnPath+'font-awesome/scss/*.*'
+  ])
+  .pipe(gulp.dest(config.srcPath+'sass/font-awesome'));
+  //font-awesome - copy fonts
+  gulp.src([
+    config.yarnPath+'font-awesome/fonts/*.*'
+  ])
+  .pipe(gulp.dest(config.srcPath+'fonts/'));
 });
 
 gulp.task('renameYarn', function () {

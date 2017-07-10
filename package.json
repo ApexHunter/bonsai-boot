@@ -55,6 +55,7 @@
     "vinyl-paths": "^2.1.0"
   },
   "dependencies": {
-    "bootstrap-v4-dev": "^4.0.0-alpha.6"
+    "bootstrap-v4-dev": "^4.0.0-alpha.6",
+    "font-awesome": "^4.7.0"
   }
 }
