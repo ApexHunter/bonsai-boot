@@ -4,7 +4,9 @@
   "description": "Boot model para projetos de frontend usando Node + Gulp + Sass + Compass",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "onchange 'static/src/sass/**/*.scss' -- npm run kss",
+    "kss": "kss --config kss-config.json"
   },
   "repository": "git+ssh://git@github.com/bellentani/boot-gulp.git",
   "keywords": [
@@ -46,9 +48,12 @@
     "gulp-uglify": "^2.0.0",
     "gulp-useref": "^3.1.2",
     "gulp-yarn": "^1.0.0",
+    "kss": "^3.0.0-beta.18",
+    "michelangelo": "^0.5.1",
     "node-bourbon": "^4.2.8",
     "node-dir": "^0.1.16",
     "node-neat": "^2.0.0-beta.0",
+    "onchange": "^3.2.1",
     "rimraf": "^2.6.1",
     "run-sequence": "^1.2.2",
     "sassdoc": "^2.3.0",
