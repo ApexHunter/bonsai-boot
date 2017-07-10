@@ -1,4 +1,4 @@
-#Workflow para frontend usando Gulp
+# Workflow para frontend usando Gulp
 
 A ideia é utilizar nesse workflow:
 
@@ -11,7 +11,7 @@ A ideia é utilizar nesse workflow:
 * Deixar apenas como pré-requisito o Node.js, Express.js e o Gulp.js (tentar utilizar no futuro o Bourbon, que ainda não está funcional com seu grid integral como framework)
 
 
-##Pré-requisito
+## Pré-requisito
 
 Caso não tenha o Gulp instalado globalmente:
 
@@ -21,7 +21,7 @@ Também é preciso instalar o Yarn globalmente:
 
 ``npm install --global yarn``
 
-##Instalação
+## Instalação
 
 Ao clonar o projeto você irá precisar realizar os dois itens abaixo.
 
@@ -30,17 +30,17 @@ Baixe o projeto e dê:
 ``npm install``
 
 
-##Tarefas cadastradas
+## Tarefas cadastradas
 
 As tarefas estão em fase inicial, mas já dá pra utilizá-las para desenvolvimento.
 
-###Converte Sass com Compass
+### Converte Sass com 'node-sass', 'bourbon', 'neat', 'autoprefixer' e 'sourcemaps'
 
-``gulp compass``
+``gulp sass``
 
 Os arquivos são salvos na pasta ´´dist/css´´.
 
-###Gera HTMLs utilizando o Handlebars.js
+### Gera HTMLs utilizando o Handlebars.js
 
 ``gulp hbs``
 
@@ -48,7 +48,7 @@ Ela gera os arquivos html que estão na pasta ``src/templates/pages``, mas pode 
 
 Os arquivos são salvos na pasta ``dist``.
 
-###Vigia modificações nos arquivos
+### Vigia modificações nos arquivos
 
 ``gulp watch``
 
