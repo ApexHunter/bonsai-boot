@@ -118,5 +118,8 @@ static
 
 ##Atualização
 
+###**2017.07.09** Adicionado o `kss-node`
+Ele gera documentação automaticamente através de uma task pelo `npm` e permite fazer a documentação direto nos SCSS. Isso facilita organização do código e permite controle sobre escalabilidade de código para interfaces reaproveitáveis. Veja mais em http://warpspire.com/kss/
+
 ###**2017.02.24** Suporte a ES2015 e instalação do gulp-babel
 Para arquivos JS serem processados e "traduzidos" de ES2015 para Javascript eles precisam ser colocados na pasta `src/js/es2015`. Depois de processados pela task `gulp js-babel` (que roda pelo `gulp watch` também) eles são jogados já na pasta raiz `dist/js` (são removidos da subpasta `/es2015`). Tive que fazer isso porque o `gulp-babel` estava renderizando arquivos minificados e plugins, dando problema nos mesmos. Para evitar isso, somente arquivos mapeados como *ES2015* serão processados.
