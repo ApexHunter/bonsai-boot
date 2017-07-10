@@ -344,16 +344,11 @@ gulp.task('jsYarn', function() {
   // ])
   // .pipe(gulp.dest(config.srcPath+'js/vendor/'));
 
-  //bootstrap 4
+  //bootstrap 3
   gulp.src([
-    config.yarnPath+'bootstrap-v4-dev/js/dist/**/*.*'
+    config.yarnPath+'bootstrap-sass/assets/javascripts/**/*.*'
   ])
   .pipe(gulp.dest(config.srcPath+'js/vendor/bootstrap'));
-
-  gulp.src([
-    config.yarnPath+'bootstrap-v4-dev/dist/js/*.*'
-  ])
-  .pipe(gulp.dest(config.srcPath+'js/vendor/'));
 
   //plugins
   // gulp.src([
@@ -367,12 +362,24 @@ gulp.task('jsYarn', function() {
 
 //Copia JS do Yarn
 gulp.task('scssYarn', function() {
-  //Bootstrap 4
+  //Bootstrap 3
   //-> scss
   gulp.src([
-    config.yarnPath+'bootstrap-v4-dev/scss/**/*.*'
+    config.yarnPath+'bootstrap-sass/assets/stylesheets/**/*.*'
   ])
   .pipe(gulp.dest(config.srcPath+'sass/bootstrap/'));
+
+  //font-awesome
+  gulp.src([
+    config.yarnPath+'font-awesome/scss/*.*'
+  ])
+  .pipe(gulp.dest(config.srcPath+'sass/font-awesome'));
+  //font-awesome - copy fonts
+  gulp.src([
+    config.yarnPath+'font-awesome/fonts/*.*'
+  ])
+  .pipe(gulp.dest(config.srcPath+'fonts/'));
+  
 });
 
 gulp.task('renameYarn', function () {
