@@ -2,13 +2,16 @@
 
 A ideia é utilizar nesse workflow:
 
-* Geração de CSS minificado através com mixins usando o Sass+Compass (``gulp-compass``);
+* Geração de CSS minificado através com mixins usando o Sass+Bourbon (``gulp-sass``);
 * Gerar htmls através de includes com template engine (Handlebars), porém, o resultado final deverá ser estático;
 * Levantar um servidor básico usando Express
 * Fazer reload automático quando uma página for alterada (live preview)
 * Testar, corrigir e minificar Javascript de Frontend
 * Instalar bibliotecas e recursos utilizando Yarn
-* Deixar apenas como pré-requisito o Node.js, Express.js e o Gulp.js (tentar utilizar no futuro o Bourbon, que ainda não está funcional com seu grid integral como framework)
+* Deixar apenas como pré-requisito o Node.js, Express.js e o Gulp.js
+* Bootstrap 4
+* Yarn como centralizador de gerenciamento de pacotes
+* Documentação automática através do KSS para Node.ks (``kss``), através do comando `npm run kss`
 
 
 ## Pré-requisito
