@@ -1,83 +1,25 @@
-html {
-  font-size: 100.01%;
-}
-body {
-  font-size: 0.8125em;
-  line-height: 1.5em;
-  font-family: $font-default;
-  color: #333;
-  font-weight: 100;
-  @include border-top-radius(5px);
+// Post Title (this will be the title of your component)
+//
+// Large, **in charge**, and centered. (this is the description of your component. you can use markdown in here.)
+//
+// Markup (define the markup to be used in your styleguide):
+// <h1 class="post-title">A Post Title</h1>
+//
+// Styleguide Components.article.post-title
+// (ꜛ this controls the organization of your style guide. Here, I'm filing this component inside Components / Article / Post Title)
 
-  h1 {
-    color: green;
-    @include border-width(1em 20px null 100%);
-  }
-}
-p {
-  font-size: 1em;
-}
+.post-title {
+    font-size: 3em;
+    text-align: center;
+    font-family: fantasy;
 
-//framewor extends
-.font-main-nav {
-  font-size: 14px;
-  font-family: $font-default;
-  font-weight: normal;
-  color: $white;
-  text-transform: uppercase;
-}
-.font-banner-titles {
-  font-size: 33px;
-  font-family: $font-default;
-  font-weight: normal;
-  color: $logo-green;
-  line-height: 36px;
-}
-.font-titles {
-  font-size: 40px;
-  font-family: $font-default;
-  font-weight: 100;
-  color: $logo-green;
-  line-height: 60px;
-}
-.font-titles-paragraph {
-  font-size: 24px;
-  font-family: $font-default;
-  font-weight: normal;
-  color: $dark-gray;
-  line-height: 28px;
-}
-.font-body-copy {
-  font-size: 16px;
-  font-family: $font-default;
-  font-weight: normal;
-  color: $dark-gray;
-  line-height: 20px;
-}
-.font-link-list {
-  font-size: 16px;
-  font-family: $font-default;
-  font-weight: normal;
-  color: $sky-blue;
-  line-height: 20px;
-}
-.font-cta {
-  font-size: 18px;
-  font-family: $font-default;
-  font-weight: bold;
-  color: $white;
-  line-height: 24px;
-}
-
-
-/*Plugin elevateZoom*/
-.zoomContainer {
-    z-index: 10;
-}
-
-.zoom-image {
-  &--picture {
-    width: 100%;
-    height: auto;
-  }
+    // Styleguide Components.article.{{modifiers}}
+    //
+    // Include modifiers with the `post-title` CSS.
+    //
+    // Styleguide Components.article.post-title
+    &--main {
+      font-size: 4em;
+      text-transform: uppercase;
+    }
 }
