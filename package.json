@@ -59,6 +59,7 @@
     "vinyl-paths": "^2.1.0"
   },
   "dependencies": {
-    "bootstrap-sass": "^4.0.0-alpha.6",
+    "bootstrap-sass": "^3.3.7",
+    "font-awesome": "^4.7.0"
   }
 }
