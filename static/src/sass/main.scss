@@ -1,5 +1,7 @@
 @import "bourbon";
 @import "bootstrap/variables";
+@import "bootstrap/mixins";
+
 @import "font-awesome/font-awesome";
 @import "project/variables";
 @import "project/global";
@@ -9,6 +11,8 @@
 
 @import "project/footer";
 @import "project/icons";
+
+@import "project/atoms/buttons";
 
 body {
   border: 1px solid red;

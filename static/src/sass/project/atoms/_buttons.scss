@@ -1,0 +1,3 @@
+.btn-primary {
+  @include button-variant($white, $life-green, $life-green);
+}

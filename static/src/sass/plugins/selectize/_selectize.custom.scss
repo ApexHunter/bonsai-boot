@@ -1,0 +1,21 @@
+.selectize-control.multi {
+  .selectize-input > div {
+    background-color: #dadada;
+    padding-right: .5em;
+    padding-left: .5em;
+    vertical-align: middle;
+  }
+  .item.active {
+    // &:after {
+    //   content: "x";
+    //   display: inline-block;
+    //   font-size: .5em;
+    //   padding: 2px 3px;
+    //   background: $dark-base;
+    //   line-height: 1;
+    //   color: $white;
+    //   margin-left: 5px;
+    //   vertical-align: middle;
+    // }
+  }
+}
