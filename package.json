@@ -56,7 +56,6 @@
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
-    "bootstrap-v4-dev": "^4.0.0-alpha.6",
     "font-awesome": "^4.7.0"
   }
 }

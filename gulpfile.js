@@ -348,7 +348,7 @@ gulp.task('jsYarn', function() {
   gulp.src([
     config.yarnPath+'bootstrap-sass/assets/javascripts/**/*.*'
   ])
-  .pipe(gulp.dest(config.srcPath+'js/vendor/bootstrap'));
+  .pipe(gulp.dest(config.srcPath+'js/vendor/'));
 
   //plugins
   // gulp.src([
@@ -367,37 +367,41 @@ gulp.task('scssYarn', function() {
   gulp.src([
     config.yarnPath+'bootstrap-sass/assets/stylesheets/**/*.*'
   ])
-  .pipe(gulp.dest(config.srcPath+'sass/bootstrap/'));
+  .pipe(gulp.dest(config.srcPath+'sass/'));
+  //-> fonts
+  gulp.src([
+    config.yarnPath+'bootstrap-sass/assets/fonts/**/*.*'
+  ])
+  .pipe(gulp.dest(config.srcPath+'fonts/bootstrap/'));
 
   //font-awesome
   gulp.src([
     config.yarnPath+'font-awesome/scss/*.*'
   ])
   .pipe(gulp.dest(config.srcPath+'sass/font-awesome'));
+
   //font-awesome - copy fonts
   gulp.src([
     config.yarnPath+'font-awesome/fonts/*.*'
   ])
   .pipe(gulp.dest(config.srcPath+'fonts/'));
-  
+
 });
 
 gulp.task('renameYarn', function () {
-  //-> Bootstrap 4 scss rename
+  //-> Font Awesome
   gulp.src([
-    config.srcPath+'sass/bootstrap/bootstrap-grid.scss',
-    config.srcPath+'sass/bootstrap/bootstrap-reboot.scss',
-    config.srcPath+'sass/bootstrap/bootstrap.scss'
+    config.srcPath+'sass/font-awesome/font-awesome.scss'
   ])
   .pipe(vinylPaths(del))
   .pipe(rename({prefix: '_' }))
-  .pipe(gulp.dest(config.srcPath+'sass/bootstrap'));
+  .pipe(gulp.dest(config.srcPath+'sass/font-awesome'));
 });
 
 gulp.task('init', function (callback) {
   runSequence('clean:dist',
-    ['bowerInit', 'jsBower', 'scssBower'],
-    'renameBower',
+    ['projectInit', 'jsYarn', 'scssYarn'],
+    'renameYarn',
     callback
   )
 });
