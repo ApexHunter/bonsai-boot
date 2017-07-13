@@ -69,6 +69,23 @@ gulp.task('sass', function() {
     }));
 });
 
+//Minify CSS to avoind LibSass error on sourcemaps
+var sassMinOptions = {
+  errLogToConsole: true,
+  outputStyle: 'compressed', //compressed
+  includePaths: [bourbon, neat]
+};
+gulp.task('sass:min', function() {
+  return gulp
+    .src(config.srcPath+'sass/**/*.+(scss|sass)')
+    .pipe(sass(sassMinOptions).on('error', sass.logError))
+    .pipe(autoprefixer(autoprefixerOptions))
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest(config.distPath+'css'))
+});
+
 //gera doc do sass (comentário)
 var sassdocOptions = {
   dest: config.distPath+'sassdoc'
@@ -241,9 +258,7 @@ gulp.task('copy-templates', function() {
 
 //Funciona quando usando o Compass - depende do Rails + Sass + Compass instalados e configurados na máquina
 gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
-  runSequence('hbs', //clean:dist e a task original aqui, removida porque deu problema no windows
-    ['sass', 'js', 'js-babel', 'images', 'fonts', 'root-files', 'sample-files'],
-    'clean-templates',
+  runSequence('build',
     callback
   );
 
@@ -302,6 +317,7 @@ gulp.task('build', function (callback) {
     'clean:dist',
     'hbs',
     'sass',
+    'sass:min',
     'clean-templates',
     'js',
     'js-babel',
@@ -309,7 +325,6 @@ gulp.task('build', function (callback) {
     'fonts',
     'sample-files',
     'root-files',
-    //['compass', 'js', 'clean-templates', 'images', 'fonts', 'angular-components', 'angular-controllers', 'angular-directives'],
     callback
   )
 });
