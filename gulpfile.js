@@ -241,9 +241,7 @@ gulp.task('copy-templates', function() {
 
 //Funciona quando usando o Compass - depende do Rails + Sass + Compass instalados e configurados na máquina
 gulp.task('watch', ['browserSync', 'clean:dist'], function(callback){
-  runSequence('hbs', //clean:dist e a task original aqui, removida porque deu problema no windows
-    ['sass', 'js', 'js-babel', 'images', 'fonts', 'root-files', 'sample-files'],
-    'clean-templates',
+  runSequence('build',
     callback
   );
 
