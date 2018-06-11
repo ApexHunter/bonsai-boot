@@ -1,20 +1,11 @@
 .header {
   color: $text-light;
-  font-family: $font-default;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 100;
 
   &__background {
+    height: 160px;
+    object-fit: cover;
     width: 100%;
-  }
-}
-
-.navbar {
-  .nav-item {
-    padding-left: .75rem;
-    padding-right: .75rem;
-  }
-  &-brand__image {
-    width: 300px;
   }
 }
