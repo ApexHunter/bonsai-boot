@@ -1,5 +1,8 @@
 .header {
-  padding: 1rem 2rem;
+  color: $text-light;
+  font-family: $font-default;
+  font-size: 1.25rem;
+  font-weight: 100;
 
   &__background {
     width: 100%;
@@ -7,6 +10,10 @@
 }
 
 .navbar {
+  .nav-item {
+    padding-left: .75rem;
+    padding-right: .75rem;
+  }
   &-brand__image {
     width: 300px;
   }
