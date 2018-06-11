@@ -1,0 +1,45 @@
+.navbar {
+  &-nav{
+    height: 100%;
+    .nav-item {
+      padding-left: .75rem;
+      padding-right: .75rem;
+      border-bottom: 3px solid transparent;
+      transition: border-color .4s ease-in-out, color .4s ease-in-out;
+      position: relative;
+      top: 3px;
+
+      &:hover,
+      &:focus {
+        color: $black;
+        border-color: $black;
+      }
+      &.active {
+          border-bottom: 3px solid $black
+      }
+
+      .nav-link {
+        padding-top: 27px;
+        padding-bottom: 27px;
+        height: 100%;
+        color: $text-light;
+
+      }
+
+      &--important {
+        .nav-link {
+          color: $text-cta;
+
+          &:focus,
+          &:hover {
+            color: $text-cta;
+          }
+        }
+      }
+    }
+  }
+
+  &-brand__image {
+    width: 300px;
+  }
+}

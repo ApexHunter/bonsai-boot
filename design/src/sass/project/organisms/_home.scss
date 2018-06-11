@@ -1,7 +1,18 @@
-.home {
-  background-color: $sunflower-yellow;
+.banner {
+  position: relative;
+  top: -8px;
+  z-index: -1;
 
-  h1 {
-    color: orange;
+  &__title {
+    position: absolute;
+    top: calc(50% - 24px);
+    left: calc(50% - 218px);
+    background-color: $black;
+    color: $white;
+    padding: .25rem .5rem;
+  }
+
+  &__img {
+    width: 100%;
   }
 }
