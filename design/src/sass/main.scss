@@ -1,0 +1,13 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/font-awesome/scss/font-awesome";
+
+@import "project/variables";
+@import "project/global";
+@import "project/fonts";
+@import "project/mixins";
+
+@import "project/atoms/buttons";
+
+@import "project/organisms/footer";
+@import "project/organisms/header";
+@import "project/organisms/home";
