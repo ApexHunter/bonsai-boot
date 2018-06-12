@@ -1,18 +1,17 @@
 $(function(){
   var navItems = $('.nav-item')
 
-  $(window).bind('scroll', function () {
+  function updateMenu () {
     var scrollTop = $(window).scrollTop()
-    console.log(scrollTop)
     switch (true) {
-      case scrollTop < 50:
+      case scrollTop < 160:
         $('.navbar').removeClass('navbar--fixed')
         for(x=0;x<navItems.length;x++){
           navItems.eq(x).removeClass('active')
         }
         navItems.eq(0).addClass("active")
         break
-      case scrollTop > 50 && scrollTop < 500:
+      case scrollTop > 160 && scrollTop < 500:
         $('.navbar').addClass('navbar--fixed')
         break
       case scrollTop > 500 && scrollTop < 1000:
@@ -33,14 +32,24 @@ $(function(){
         }
         navItems.eq(3).addClass("active")
         break
-      case scrollTop > 2000 && scrollTop < 2500:
+      case scrollTop > 2000 && scrollTop < 3200:
         for(x=0;x<navItems.length;x++){
           navItems.eq(x).removeClass('active')
         }
         navItems.eq(4).addClass("active")
         break
+      case scrollTop > 3400:
+        for(x=0;x<navItems.length;x++){
+          navItems.eq(x).removeClass('active')
+        }
+        navItems.eq(5).addClass("active")
+        break
       default:
         break
     }
+  }
+
+  $(window).bind('scroll', function () {
+    updateMenu()
   });
 });
