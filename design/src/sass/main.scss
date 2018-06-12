@@ -8,8 +8,11 @@
 
 @import "project/atoms/buttons";
 
+@import "project/molecules/service";
 @import "project/molecules/navbar";
+@import "project/molecules/team-member";
 
+@import "project/organisms/content";
 @import "project/organisms/footer";
 @import "project/organisms/header";
-@import "project/organisms/home";
+@import "project/organisms/banner";

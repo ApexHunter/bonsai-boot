@@ -16,28 +16,31 @@
 
 <body>
     <div class="body-container">
-        <header class="header">
+        <header class="header" id="home">
             <img class="header__background" src="samples/header_bg.jpg" alt="texture pattern">
             <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="#home">
+            <img class="navbar-brand__image" src="img/bonsai--logo--horizontal.jpg" alt="Logo Bonsai UX">
+          </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <a class="navbar-brand" href="#">
-              <img class="navbar-brand__image" src="img/bonsai--logo--horizontal.jpg" alt="Logo Bonsai UX">
-            </a>
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="#home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Sobre</a>
+                            <a class="nav-link" href="#about">Sobre</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Equipe</a>
+                            <a class="nav-link" href="#services">Serviços</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Clientes</a>
+                            <a class="nav-link" href="#how-we-work">Nosso Trabalho</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#team">Equipe</a>
                         </li>
                         <li class="nav-item nav-item--important">
                             <a class="nav-link" href="#">Contato</a>
@@ -49,6 +52,197 @@
         <div class="banner">
             <h1 class="banner__title">Conheça nosso trabalho</h1>
             <img class="banner__img" src="../samples/home_bg.jpg" alt="">
+        </div>
+        <div class="content" id="about">
+            <div class="container">
+                <div class="content__container">
+                    <div class="row">
+                        <div class="col-md-4 col-12">
+                            <div class="content__vertical">
+                                <img class="content__brand--logo ml-auto mr-auto" src="img/simbolo.png" alt="Logo Bonsaiux compacto">
+                            </div>
+                        </div>
+                        <div class="offset-md-1 col-md-7 col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 class="content__title">
+                                        Vestibulum commodo volutpat convallis laoreet enim
+                                    </h2>
+                                </div>
+                                <div class="col-6">
+                                    <p class="content__text">
+                                        Aliquam erat ac ipsum. Integer aliquam purus. Quisque lorem tortor fringilla sed, vestibulum id, eleifend justo vel biben dum nulla quam.
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="content__text content__text--light">
+                                        Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, convallis ac, laoreet enim. Phasellus fermentum in, dolor. Pellentesque facilisis. Nulla imperdiet sit amet magna. Vestibulum dapibus, mauris nec malesuada fames
+                                        ac turpis velit, rhoncus eu, luctus et interdum adipiscing wisi
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content" id="services">
+            <div class="container">
+                <div class="content__container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="content__title content__title--secondary content__title--small text-center">Nossos serviços</h3>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-12">
+                            <div class="service text-center">
+                                <i class="service__icon fa fa-envelope-o"></i>
+                                <h5 clas="service__title">Sites reponsivos</h5>
+                                <p class="content__text--light">Nossos sites funcionam em qualquer gadget.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-12">
+                            <div class="service text-center">
+                                <i class="service__icon fa fa-envelope-o"></i>
+                                <h5 clas="service__title">Design especializado</h5>
+                                <p class="content__text--light">Nossa equipe é formada por pessoas apaixonadas pelo que fazem.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-12">
+                            <div class="service text-center">
+                                <i class="service__icon fa fa-envelope-o"></i>
+                                <h5 clas="service__title">Conteúdo gerenciável</h5>
+                                <p class="content__text--light">Soluções sob medida para resolver quaisquer necessidades.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-12">
+                            <div class="service text-center">
+                                <i class="service__icon fa fa-envelope-o"></i>
+                                <h5 clas="service__title">PSD2HTML</h5>
+                                <p class="content__text--light">Seu layout rápido para rodar na web, desde sites estáticos até dinâmicos.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-12">
+                            <div class="service text-center">
+                                <i class="service__icon fa fa-envelope-o"></i>
+                                <h5 clas="service__title">E-mail marketing</h5>
+                                <p class="content__text--light">Estratégias, artes e disparos que atingem o maior número de usuários.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-12">
+                            <div class="service text-center">
+                                <i class="service__icon fa fa-envelope-o"></i>
+                                <h5 clas="service__title">Seu negócio na web</h5>
+                                <p class="content__text--light">Entender suas necessidades, criar produtos que gerem valor à sua empresa e te ajudar a economizar dinheiro.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content" class="how-we-work">
+            <div class="container">
+                <div class="content__container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 class="content__title">
+                                        Como nós <span class="content__title--secondary">trabalhamos</span>
+                                    </h2>
+                                </div>
+                                <div class="col-sm-6 col-12">
+                                    <p class="content__text content__text--light">
+                                        Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, convallis ac, laoreet enim. Phasellus fermentum in, dolor. Pellentesque facilisis. Nulla imperdiet sit amet magna. Vestibulum dapibus, mauris nec malesuada fames
+                                        ac turpis velit, rhoncus eu, luctus et interdum adipiscing wisi
+                                    </p>
+                                </div>
+                                <div class="col-sm-6 col-12">
+                                    <p class="content__text content__text--light">
+                                        Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, convallis ac, laoreet enim. Phasellus fermentum in, dolor. Pellentesque facilisis. Nulla imperdiet sit amet magna. Vestibulum dapibus, mauris nec malesuada fames
+                                        ac turpis velit, rhoncus eu, luctus et interdum adipiscing wisi
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content" id="team">
+            <div class="container">
+                <div class="content__container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="content__title content__title--big text-center">Nosso time</h3>
+                        </div>
+                        <div class="col-12">
+                            <h3 class="content__title content__title--secondary content__title--small text-center">
+                                A equipe Bonsai trabalha sempre buscando atender da melhor forma possível clientes e usuários finais dos seus produtos, mirando sempre a excelencia
+                            </h3>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="team-member">
+                                <img class="team-member__pic" src="samples/team-member-1.jpg" alt="Poe Bellentani">
+                                <div class="team-member__info">
+                                    <h4 class="team-member__name">Poe Bellentani</h4>
+                                    <p class="content__text">CEO, UX Designer and UI Developer</p>
+                                    <p class="content__text content__text--light">Sou um geek, hipster e workaholic que gosta de RPG</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="team-member">
+                                <img class="team-member__pic" src="samples/team-member-2.jpg" alt="Luiz Miguel">
+                                <div class="team-member__info">
+                                    <h4 class="team-member__name">Luiz Miguel</h4>
+                                    <p class="content__text">UX Designer</p>
+                                    <p class="content__text content__text--light">Moreno, alto, bonito, good vibes, dançarino e youtuber de tecnologia</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="team-member">
+                                <img class="team-member__pic" src="samples/team-member-3.jpg" alt="Matheus Luiz">
+                                <div class="team-member__info">
+                                    <h4 class="team-member__name">Matheus Luiz</h4>
+                                    <p class="content__text">UI Developer</p>
+                                    <p class="content__text content__text--light">Fissurado por jogos e desenvolvimento de jogos. Recém convertido muçulmano</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="team-member">
+                                <img class="team-member__pic" src="samples/team-member-3.jpg" alt="Beatriz Delmont">
+                                <div class="team-member__info">
+                                    <h4 class="team-member__name">Beatriz Delmont</h4>
+                                    <p class="content__text">Internee</p>
+                                    <p class="content__text content__text--light">Gerente linha dura e quase uma caçadora de vampiros (por uma letra)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="team-member">
+                                <img class="team-member__pic" src="samples/team-member-2.jpg" alt="Guilherme Monteiro">
+                                <div class="team-member__info">
+                                    <h4 class="team-member__name">Guilherme Monteiro</h4>
+                                    <p class="content__text">UI Developer</p>
+                                    <p class="content__text content__text--light">Socially awkward, mas gente boa pra caralho</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="team-member">
+                                <img class="team-member__pic" src="samples/team-member-1.jpg" alt="Rafael Sanches">
+                                <div class="team-member__info">
+                                    <h4 class="team-member__name">Rafael Sanches</h4>
+                                    <p class="content__text">Front-end Developer</p>
+                                    <p class="content__text content__text--light">Criminal mastermind, atendia pelo codinome de &quot;Professor&quot;</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <footer>
             footer page oi <i class="far fa-check"></i>

@@ -1,4 +1,8 @@
 .navbar {
+  border-bottom: 1px solid rgba($black, .3);
+  padding-bottom: 0;
+  background-color: $white;
+
   &-nav{
     height: 100%;
     .nav-item {
@@ -15,7 +19,7 @@
         border-color: $black;
       }
       &.active {
-          border-bottom: 3px solid $black
+        border-bottom: 3px solid $black
       }
 
       .nav-link {
@@ -41,5 +45,26 @@
 
   &-brand__image {
     width: 300px;
+  }
+
+  &--fixed {
+    padding: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+
+    .navbar-brand {
+      padding: 0;
+    }
+
+    .navbar-nav {
+      .nav-item {
+        .nav-link {
+          padding-bottom: 22px;
+          padding-top: 22px;
+        }
+      }
+    }
   }
 }

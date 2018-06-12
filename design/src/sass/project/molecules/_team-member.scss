@@ -1,0 +1,41 @@
+.team-member {
+  position: relative;
+
+  &__pic {
+    height: auto;
+    width: 100%;
+  }
+
+  &__info {
+    padding: 2rem;
+  }
+
+  &__name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-bottom: 3rem;
+
+    &::before {
+      background-color: $black;
+      border-radius: 50%;
+      content: '';
+      display: block;
+      height: 3px;
+      left: -2rem;
+      position: relative;
+      bottom: -60px;
+      width: 3px;
+    }
+
+    &::after {
+      background-color: rgba($black,.4);
+      content: '';
+      display: block;
+      height: 1px;
+      left: -2rem;
+      position: relative;
+      bottom: -30px;
+      width: 150px;
+    }
+  }
+}

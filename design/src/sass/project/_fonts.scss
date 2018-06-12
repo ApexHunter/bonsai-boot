@@ -13,12 +13,18 @@
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../fonts/Raleway-Bold.ttf');
-  font-weight: bolder;
+  src: url('../fonts/Raleway-SemiBold.ttf');
+  font-weight: 500;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../fonts/Raleway-SemiBold.ttf');
-  font-weight: bold;
+  src: url('../fonts/Raleway-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway-ExtraBold.ttf');
+  font-weight: 900;
 }
