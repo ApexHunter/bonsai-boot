@@ -27,16 +27,15 @@ $background-gray:   #eaeaea;
 $black: #000;
 $white: #fff;
 
+//Functional colors
+$main-light: #979ca3;
+
 //text-colors
-$text-light: #979ca3;
-$text-cta: #b8a892;
+$text-light: $main-light;
+$text-cta: $main-color;
+$text-normal: #6a707e;
 
 //Fonts
 $font-default: "Raleway", Arial , sans-serif;
 
-//Functional colors
-$arrows-icons: $life-green;
-
 //Size variables
-$header-height: 200px;
-$header-height--sm: 100px;

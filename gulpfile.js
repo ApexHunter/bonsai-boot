@@ -89,6 +89,7 @@ gulp.task('copy-files', function() {
 
   gulp.src([
     path.src.font+'/**/*',
+    path.root+'node_modules/font-awesome/fonts/*',
     '!'+path.src.font+'/**/*.+(html|css)'
   ])
   .pipe(gulp.dest(path.dist.font))

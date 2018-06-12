@@ -1,0 +1,14 @@
+.service {
+
+  &__icon {
+    color: $main-color;
+    font-size: 6rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
+
+  &__title {
+    color: $text-normal;
+    font-size: 1rem;
+  }
+}

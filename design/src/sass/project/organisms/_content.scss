@@ -1,0 +1,61 @@
+.content {
+  &__container {
+    border-bottom: rgba($main-light,.2) solid 1px;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+
+  }
+
+  &__vertical {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    position: relative;
+  }
+
+  &__brand {
+    &--logo {
+      display: inline-block;
+      height: auto;
+      vertical-align: middle;
+      width: 100%;
+    }
+  }
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 900;
+    padding-bottom: 1rem;
+
+    &--secondary {
+      color: $main-color;
+    }
+
+    &--small {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    &--big {
+      border-bottom: rgba($main-light,.2) solid 1px;
+      padding-bottom: 3rem;
+      padding-top: 2rem;
+    }
+  }
+
+  &__text {
+    font-size: .875rem;
+    font-weight: 700;
+
+    &--light {
+      color: $text-normal;
+      font-weight: normal;
+    }
+  }
+
+  &:last-of-type {
+    .content__container {
+      border: none;
+    }
+  }
+}
