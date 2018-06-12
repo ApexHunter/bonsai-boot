@@ -2,6 +2,6 @@
 node_modules/
 npm-debug.log
 **/_notes
-static/dist/
+design/dist/
 static/src/components
 yearn.lock

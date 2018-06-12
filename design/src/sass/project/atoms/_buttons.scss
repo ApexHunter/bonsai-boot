@@ -1,14 +1,13 @@
-.btn {
-  border: none;
-  @include gradient(90deg,$logo-green,$sky-blue);
-  transition: .2s all;
+.btn-primary {
+  background-color: $main-color;
+  border: 0;
+  border-radius: 0;
+  color: $white;
+  outline: none;
+  transition: background-color 0.3s ease-in-out;
+  width: 100%;
 
   &:hover {
-    transform: translateY(1px);
+    background-color: darken($main-color, 10);
   }
-}
-
-.btn-primary {
-  @extend .btn;
-  border-radius: 20px;
 }

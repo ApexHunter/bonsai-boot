@@ -1,0 +1,15 @@
+.form-control {
+    border-radius: 0;
+    font-weight: 300;
+    outline: none;
+    resize: none;
+
+    &::placeholder {
+        font-weight: 300;
+    }
+
+    &:focus {
+        border-color: $main-color;
+        outline: none;
+    }
+}

@@ -46,56 +46,260 @@
                 </div>
             </nav>
         </header>
-        <section class="have-question">
-            <div class="container">
-                <h2>Have a question?</h2>
-            </div>
-        </section>
-
-        <footer class="footer">
+        <div class="banner">
+            <h1 class="banner__title">Conheça nosso trabalho</h1>
+            <img class="banner__img" src="../samples/home_bg.jpg" alt="">
+        </div>
+        <section class="contact">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <h2>Bonsai UX</h2>
+                    <div class="col-md-5">
+                        <h2>Mande-nos uma mensagem</h2>
 
-                        <p>
-                            Sed ac mauris sit amet ante. Maecenas eu nibh. Aliquam fermentum eget, suscipit congue id, lacinia accumsan lectus nec lectus lectus, luctus et ultrices metus imperdiet facilisis est eu quam. Phasellus ut ante. Donec mi. Suspendisse adipiscing.
-                        </p>
+                        <form class="contact__form">
+                            <div class="form-group">
+                                <label for="name">Nome:</label>
+                                <input type="text" id="name" class="form-control" name="name" placeholder="Seu nome">
+                                <div class="text-help">
+                                    Preencha este campo
+                                </div>
+                            </div>
 
-                        <a href="#">Read more...</a>
-                    </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" class="form-control" name="email" placeholder="Seu email">
+                                <div class="text-help">
+                                    Preencha este campo
+                                </div>
+                            </div>
 
-                    <div class="col-md-4">
-                        <h2>Bonsai UX</h2>
+                            <div class="form-group">
+                                <label for="message">Mensagem:</label>
+                                <textarea id="message" class="form-control" name="message" placeholder="Seu mensagem" cols="30" rows="10"></textarea>
+                                <div class="text-help">
+                                    Preencha este campo
+                                </div>
+                            </div>
 
-                        <p>
-                            Sed ac mauris sit amet ante. Maecenas eu nibh. Aliquam fermentum eget, suscipit congue id, lacinia accumsan lectus nec lectus lectus, luctus et ultrices metus imperdiet facilisis est eu quam. Phasellus ut ante. Donec mi. Suspendisse adipiscing.
-                        </p>
-
-                        <a href="#">Read more...</a>
-                    </div>
-
-                    <div class="col-md-4">
-                        <h2>Bonsai UX</h2>
-
-                        <p>
-                            Sed ac mauris sit amet ante. Maecenas eu nibh. Aliquam fermentum eget, suscipit congue id, lacinia accumsan lectus nec lectus lectus, luctus et ultrices metus imperdiet facilisis est eu quam. Phasellus ut ante. Donec mi. Suspendisse adipiscing.
-                        </p>
-
-                        <a href="#">Read more...</a>
+                            <button type="button" class="btn btn-primary">Enviar</button>
+                        </form>
                     </div>
                 </div>
+            </div>
+        </section>
+        <section class="map-container" style="height: 400px; width: 100%;">
+            <div id="map" style="height: 100%;"></div>
+        </section>
+        <footer class="footer">
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="footer__copyright-notice">
-                            &copy; 2018 Bonsai UX - Todos os direitos reservados.
+            <div class="footer__body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h2>Bonsai UX</h2>
+
+                            <p>
+                                Sed ac mauris sit amet ante. Maecenas eu nibh. Aliquam fermentum eget, suscipit congue id, lacinia accumsan lectus nec lectus lectus, luctus et ultrices metus imperdiet facilisis est eu quam. Phasellus ut ante. Donec mi. Suspendisse adipiscing.
+                            </p>
+
+                            <a href="#">Read more...</a>
                         </div>
+
+                        <div class="col-md-4">
+                            <h2>Bonsai UX</h2>
+
+                            <p>
+                                Sed ac mauris sit amet ante. Maecenas eu nibh. Aliquam fermentum eget, suscipit congue id, lacinia accumsan lectus nec lectus lectus, luctus et ultrices metus imperdiet facilisis est eu quam. Phasellus ut ante. Donec mi. Suspendisse adipiscing.
+                            </p>
+
+                            <a href="#">Read more...</a>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h2>Bonsai UX</h2>
+
+                            <p>
+                                Sed ac mauris sit amet ante. Maecenas eu nibh. Aliquam fermentum eget, suscipit congue id, lacinia accumsan lectus nec lectus lectus, luctus et ultrices metus imperdiet facilisis est eu quam. Phasellus ut ante. Donec mi. Suspendisse adipiscing.
+                            </p>
+
+                            <a href="#">Read more...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__footer">
+                <div class="container">
+                    <div class="footer__copyright-notice">
+                        &copy; 2018 Bonsai UX - Todos os direitos reservados.
                     </div>
                 </div>
             </div>
         </footer>
         <script src="js/main.min.js"></script>
+
+        <script>
+            function initMap() {
+
+                // Create a new StyledMapType object, passing it an array of styles,
+                // and the name to be displayed on the map type control.
+                var styledMapType = new google.maps.StyledMapType(
+                    [{
+                            "elementType": "geometry",
+                            "stylers": [{
+                                "color": "#242f3e"
+                            }]
+                        },
+                        {
+                            "elementType": "labels.text.fill",
+                            "stylers": [{
+                                "color": "#746855"
+                            }]
+                        },
+                        {
+                            "elementType": "labels.text.stroke",
+                            "stylers": [{
+                                "color": "#242f3e"
+                            }]
+                        },
+                        {
+                            "featureType": "administrative.locality",
+                            "elementType": "labels.text.fill",
+                            "stylers": [{
+                                "color": "#d59563"
+                            }]
+                        },
+                        {
+                            "featureType": "poi",
+                            "elementType": "labels.text.fill",
+                            "stylers": [{
+                                "color": "#d59563"
+                            }]
+                        },
+                        {
+                            "featureType": "poi.park",
+                            "elementType": "geometry",
+                            "stylers": [{
+                                "color": "#263c3f"
+                            }]
+                        },
+                        {
+                            "featureType": "poi.park",
+                            "elementType": "labels.text.fill",
+                            "stylers": [{
+                                "color": "#6b9a76"
+                            }]
+                        },
+                        {
+                            "featureType": "road",
+                            "elementType": "geometry",
+                            "stylers": [{
+                                "color": "#38414e"
+                            }]
+                        },
+                        {
+                            "featureType": "road",
+                            "elementType": "geometry.stroke",
+                            "stylers": [{
+                                "color": "#212a37"
+                            }]
+                        },
+                        {
+                            "featureType": "road",
+                            "elementType": "labels.text.fill",
+                            "stylers": [{
+                                "color": "#9ca5b3"
+                            }]
+                        },
+                        {
+                            "featureType": "road.highway",
+                            "elementType": "geometry",
+                            "stylers": [{
+                                "color": "#746855"
+                            }]
+                        },
+                        {
+                            "featureType": "road.highway",
+                            "elementType": "geometry.stroke",
+                            "stylers": [{
+                                "color": "#1f2835"
+                            }]
+                        },
+                        {
+                            "featureType": "road.highway",
+                            "elementType": "labels.text.fill",
+                            "stylers": [{
+                                "color": "#f3d19c"
+                            }]
+                        },
+                        {
+                            "featureType": "transit",
+                            "elementType": "geometry",
+                            "stylers": [{
+                                "color": "#2f3948"
+                            }]
+                        },
+                        {
+                            "featureType": "transit.station",
+                            "elementType": "labels.text.fill",
+                            "stylers": [{
+                                "color": "#d59563"
+                            }]
+                        },
+                        {
+                            "featureType": "water",
+                            "elementType": "geometry",
+                            "stylers": [{
+                                "color": "#17263c"
+                            }]
+                        },
+                        {
+                            "featureType": "water",
+                            "elementType": "labels.text.fill",
+                            "stylers": [{
+                                "color": "#515c6d"
+                            }]
+                        },
+                        {
+                            "featureType": "water",
+                            "elementType": "labels.text.stroke",
+                            "stylers": [{
+                                "color": "#17263c"
+                            }]
+                        }
+                    ], {
+                        name: 'Styled Map'
+                    });
+
+                // Create a map object, and include the MapTypeId to add
+                // to the map type control.
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: {
+                        lat: -23.4721221,
+                        lng: -47.4449999
+                    },
+                    zoom: 18,
+                    mapTypeControlOptions: {
+                        mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+                            'styled_map'
+                        ]
+                    }
+                });
+
+                //Associate the styled map with the MapTypeId and set it to display.
+                map.mapTypes.set('styled_map', styledMapType);
+                map.setMapTypeId('styled_map');
+
+                /*var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(-23.4721221, -47.4446999),
+                    map: map,
+                    icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                });*/
+            }
+        </script>
+
+        <!-- Google Maps API -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAS3rCbV5ZisxKZYrp2XHyNFLjCPzDXlEU&callback=initMap" async defer></script>
     </div>
 </body>
 
