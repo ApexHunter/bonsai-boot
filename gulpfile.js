@@ -184,6 +184,8 @@ gulp.task('watch', function(callback) {
 
   gulp.watch(path.src.sass+'/**/*.+(scss|sass)', ['sass']);
 
+  gulp.watch(path.src.js+'/**/*.js', ['build']);
+
   gulp.watch([
     path.src.root+'/*.{ico,jpg,png,gif,txt,xml}',
     '!'+path.src.root+'/*.+(zip|rar|psd|ai|pdf)'

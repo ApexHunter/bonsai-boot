@@ -14,6 +14,7 @@
     font-size: 1.5rem;
     font-weight: 700;
     padding-bottom: 3rem;
+    white-space: nowrap;
 
     &::before {
       background-color: $black;

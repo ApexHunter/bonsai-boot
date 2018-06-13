@@ -2,16 +2,36 @@
   position: relative;
   z-index: -1;
 
+  @media (min-width: $screen-mobile) {
+    width: calc(100vw - 5rem);
+  }
+
   &__title {
-    position: absolute;
-    top: calc(50% - 24px);
-    left: calc(50% - 218px);
     background-color: $black;
     color: $white;
+    margin: 0 auto;
     padding: .25rem .5rem;
+    position: relative;
+    text-align: center;
+    top: calc(50% - 28px);
+    max-width: 475px;
   }
 
   &__img {
     width: 100%;
   }
+}
+
+.parallax {
+  /* The image used */
+  background-image: url("../samples/home_bg.jpg");
+
+  /* Set a specific height */
+  height: 700px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
