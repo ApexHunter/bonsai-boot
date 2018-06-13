@@ -1,7 +1,7 @@
 .navbar {
+  background-color: $white;
   border-bottom: 1px solid rgba($black, .3);
   padding-bottom: 0;
-  background-color: $white;
 
   &-nav{
     height: 100%;
@@ -44,7 +44,14 @@
   }
 
   &-brand__image {
+    display: block;
     width: 300px;
+
+    &--sm {
+      display: none;
+      margin: 10px 1rem;
+      width: 70px;
+    }
   }
 
   &--fixed {
@@ -64,6 +71,18 @@
         .nav-link {
           padding-bottom: 22px;
           padding-top: 22px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 500px) {
+    .navbar {
+      &-brand__image {
+        display: none;
+
+        &--sm {
+          display: block;
         }
       }
     }

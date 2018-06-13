@@ -4,8 +4,15 @@
   font-weight: 100;
 
   &__background {
+    display: none;
     height: 160px;
     object-fit: cover;
     width: 100%;
+  }
+
+  @media (min-width: $screen-mobile) {
+    &__background {
+      display: block;
+    }
   }
 }
