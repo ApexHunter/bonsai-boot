@@ -49,7 +49,7 @@ gulp.task('browserSync', function() {
 
 var sassOptions = {
   errLogToConsole: true,
-  outputStyle: 'compressed' //compressed
+  outputStyle: 'compact'
 };
 var autoprefixerOptions = {
   browsers: ['last 5 versions', '> 5%', 'Firefox ESR']
@@ -60,12 +60,13 @@ gulp.task('sass', function() {
     .pipe(sourcemaps.init({
       largeFile: true
     }))
+    .pipe(sourcemaps.identityMap())
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(autoprefixer(autoprefixerOptions))
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(path.dist.css))
     .pipe(browserSync.reload({
       stream: true
