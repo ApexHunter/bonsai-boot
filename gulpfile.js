@@ -168,8 +168,9 @@ gulp.task('clean:dist', function() {
 
 gulp.task('clean:js', function() {
   return del.sync([
-    path.dist.js+'/**/*.js',
-    '!'+path.dist.js+'/main.min.js'
+    path.dist.js+'/main.js'
+    // path.dist.js+'/**/*.js',
+    // '!'+path.dist.js+'/main.min.js'
   ])
 });
 
